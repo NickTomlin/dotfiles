@@ -22,15 +22,16 @@ ZSH=$HOME/.oh-my-zsh
 # --- PATH
 export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/share/python:/Applications/acquia-drupal/drush:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
-# --- PLUGINS (~/.oh-my-zsh/plugins/*) ---
-plugins=(git zshmarks osx ruby)
-
-source $ZSH/oh-my-zsh.sh
 
 # --- Themeing
 
 ## Load the lovely sunaku theme
 export ZSH_THEME="sunaku"
+
+# --- PLUGINS (~/.oh-my-zsh/plugins/*) ---
+plugins=(git zshmarks osx ruby)
+
+source $ZSH/oh-my-zsh.sh
 
 # --- Shell Options
 
@@ -110,6 +111,19 @@ fn_exists() {
 	    type $1 | grep -q 'shell function'
 }
 
+# Start a python simple HTTP server
+## http://docs.python.org/2/library/simplehttpserver.html#module-SimpleHTTPServer
+sserv() {
+  if [[ -z "$1" ]]; then
+      echo "No port supplied. Using 3000"
+      PORT=3000
+  else
+    PORT="$1"
+  fi
+  echo "\033[38;5;148m Starting on $PORT, Have Fun!\033[39m"
+  python -m SimpleHTTPServer $PORT
+}
+
 ######
 # Language Specific
 ######
@@ -117,7 +131,7 @@ fn_exists() {
 # --- RUBY
 ## PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# RVM
+## RVM
 ## Load RVM into a shell session *as a function* (consider seeing here: https://gist.github.com/1015460)
 ## echo "===RVM==="
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
@@ -128,4 +142,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # --- NODE
 
 ## NVM
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh" && nvm alias default 0.8; nvm use default;
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion 
