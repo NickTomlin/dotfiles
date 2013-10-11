@@ -44,41 +44,68 @@ plugins=(git zshmarks osx node ruby pip django redis-cli)
 source $ZSH/oh-my-zsh.sh
 
 # --- Shell Options
+## set editor
+### @todo consider switching back to ST2?
+EDITOR='vim'  # emacs sucks. J/K. Not really.
+export EDITOR
 
-## Remove duplicates
+## Autocomplete
+### @borked Reverse tab in autocomplete http://stackoverflow.com/a/842370/1048479
+# bindkey '^[[Z' reverse-menu-complete
+
+## Files
+### have mkdir create parent directories
+alias mkdir='mkdir -pv'
+
+## History
+### Histsize
+HISTSIZE=1000
+
+### Remove duplicates
 export HISTCONTROL=erasedups
+### Timestamps with history entries
+#@BORKED export HISTTIMEFORMAT="%F %T "
 
 ## Default `cd` to pushd/popd
 setopt autopushd
 
-## VI Mode
+## Display stack number next to directory listing
+alias dirs='dirs -v'
+
+## VI Mode ^^
+set -o vi
+
+### Edit command line (http://nuclearsquid.com/writings/edit-long-commands/)
+autoload -U edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+# @borked using `subl` (works with EDITOR set to 'vim' though!)
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 ### provide reverse I search in vi mode
-set -o vi
 bindkey "^R" history-incremental-search-backward
 
 #### quick-switch to command mode (http://superuser.com/a/353127/146376)
 bindkey '^j' vi-cmd-mode
 
 # Make sure to fix the horribly slow git completion with https://github.com/bobthecow/git-flow-completion/wiki/Update-Zsh-git-completion-module
-# consider https://github.com/webflo/drush_zsh_completion
+# @consider https://github.com/webflo/drush_zsh_completion
 
-## -- OS
-## Check to see if we are running on a mac, if so, use MacVim
-## probably not the wisest thing to do on every session? tweak this and implement it later
-# if [ $(uname -s) == "Darwin" ] # Currently borked
+# --- OS
 
-#   then
-#     # Use MacVim instead of Vim (for system keyboard stuff, etc)
-#     # Should probably check if this exists before setting, but that'll come later
-#     alias vim=/usr/local/Cellar/macvim/7.3-65/MacVim.app/Contents/MacOS/vim
-#     open=open
-
-#   else
-#     open=xdg-open
-# fi
-
-
+if [[ $(uname -s) == "Darwin" ]]
+  then
+    # @todo Use MacVim instead of Vim (for system keyboard stuff, etc)
+    # Should probably check if this exists before setting, but that'll come later
+    # alias vim=/usr/local/Cellar/macvim/7.3-65/MacVim.app/Contents/MacOS/vim
+    # this may need to happen within local alises, since installed version differs from system to system
+    # or: symlink macvim to bin and then access it there?
+    # or: grep for it?
+    open=open
+  else
+    open=xdg-open # consider prepending 'detach' to free up process on open [source](http://unix.stackexchange.com/a/74622/38479)
+fi
 
 ######
 # ALIASES
