@@ -179,14 +179,25 @@ sserv() {
 
 ## RVM
 ## Load RVM into a shell session *as a function* (consider seeing here: https://gist.github.com/1015460)
-## echo "===RVM==="
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # --- NODE
 
 ## NVM
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh" && nvm alias default 0.8; nvm use default;
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion 
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh" && nvm alias default 0.10; nvm use default;
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+
+# --- HASKELL
+
+[[ -d "$HOME/.cabal/bin" ]] && export PATH="$HOME/.cabal/bin:$PATH"
+
+# --- PYTHON
+# @todo manually source virtualenvwrapper instead of using venv burrito (fix python3 incompatibility)
+
+######
+# PAAS related tools
+######
+
+# Heroku
+[[ -d "/usr/bin/heroku" ]] && export PATH="/usr/local/heroku/bin:$PATH"
+
