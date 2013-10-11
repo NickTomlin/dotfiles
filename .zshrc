@@ -111,27 +111,36 @@ fi
 # ALIASES
 ######
 
-# --- local bash aliases
-source ~/.bash_aliases
-
-# --- Portable bash aliases
-alias dirs='dirs -v'
-alias zshrc='vim ~/.zshrc'
+# --- "Portable" bash aliases
+alias zshrc='$EDITOR ~/.zshrc'
+alias blog='$EDITOR ~/Google\ Drive/sync/octoblog-drafts'
 
 # --- Convenience
-
 ## Print the current date (for backups, etc)
 nicedate=$(date +%m-%d-%y)
-
-## have mkdir create parent directories
-alias mkdir='mkdir -pv'
-
+## Line numbers with cat
+alias catn='cat -n'
 
 ######
-# FUNCTIONS (consider moving to a seperate file)
+# FUNCTIONS (@todo consider moving to a seperate file)
 ######
+# base64 encode a file,
+## source: @mathias-bynens comment to  http://superuser.com/a/120815/146376
+## @todo format this into a css data url
+base64() {
+  openssl base64 < $1 | tr -d '\n' | pbcopy
+}
+# copy
+## Copies User's sshkey to clipboard
+## @todo: have a general "copy" alias to use in linux + darwin?
+sshkey() {
+  if exists pbcopy; then
+    pbcopy < ${HOME}/.ssh/id_rsa.pub
+    echo "sshkey copied to clipboard. Have fun"
+  fi
+}
 
-# Search Google for terms (linux )
+# Search Google for terms
 ## http://superuser.com/questions/47192/google-search-from-linux-terminal
 google() {
     search=""
