@@ -17,6 +17,15 @@
 # Iterm: Theme: https://github.com/baskerville/iTerm-2-Color-Themes arthur
 
 ######
+# Helpers
+######
+
+# Check for existence of program
+exists () {
+  hash $1 2>/dev/null
+}
+
+######
 # Zsh Configuration
 ######
 
