@@ -7,11 +7,14 @@
 #   d888'    .P oo     .d8P  888     888        8    Y     888   .8'     `888.  `88.    .88'   888  `88b    ooo
 # .8888888888P  8""88888P'  o888o   o888o      o8o        o888o o88o     o8888o  `Y8bood8P'   o888o  `Y8bood8P'
 ##############
+# Legend:
+# @todo: future feature
+# @consider: education/possibility
+# @borked: broken. Fix it!
 
-# Config notes:
+# Theme notes:
 # Font: http://damieng.com/blog/2007/11/14/droid-font-family-courtesy-of-google-ascender
 # Iterm: Theme: https://github.com/baskerville/iTerm-2-Color-Themes arthur
-# Path to your oh-my-zsh configuration.
 
 ######
 # Zsh Configuration
