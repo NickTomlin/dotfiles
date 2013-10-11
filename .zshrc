@@ -32,17 +32,15 @@ exists () {
 ZSH=$HOME/.oh-my-zsh
 
 # --- PATH
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/share/python:/Applications/acquia-drupal/drush:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
-
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/Applications/acquia-drupal/drush:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+# local config / aliases
+[[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
 
 # --- Themeing
-
-## Load the lovely sunaku theme
-export ZSH_THEME="sunaku"
+export ZSH_THEME="sorin" # Sweet git magic
 
 # --- PLUGINS (~/.oh-my-zsh/plugins/*) ---
-plugins=(git zshmarks osx ruby)
-
+plugins=(git zshmarks osx node ruby pip django redis-cli)
 source $ZSH/oh-my-zsh.sh
 
 # --- Shell Options
