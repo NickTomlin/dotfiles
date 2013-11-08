@@ -1,0 +1,3 @@
+[nosetests]
+; print the output of commands like print() to stderr
+nocapture=1
