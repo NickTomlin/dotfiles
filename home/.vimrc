@@ -4,13 +4,16 @@ set nocompatible              " be iMproved
 filetype off                  " required!
 set number
 
-" === input
+" === Looks
+colorscheme Tomorrow-Night-Eighties
+
+" === Input
 " don't copy numbers with mouse
 set mouse=a
+" non insane paste
 set pastetoggle=<F2>
 
 " ===  Syntax 
-colorscheme Tomorrow-Night-Eighties
 " enable per-language settings: http://stackoverflow.com/a/1743255/1048479
 " required by vundle
 filetype plugin indent on
@@ -24,7 +27,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'L9'
 Bundle 'FuzzyFinder'
@@ -38,3 +41,11 @@ Bundle 'FuzzyFinder'
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
+
+
+"" * ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" https://github.com/kien/ctrlp.vim#basic-options
+let g:ctrlp_working_path_mode = 'c'
+
