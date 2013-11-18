@@ -26,12 +26,14 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-
+Bundle 'mattn/emmet-vim'
+Bundle 'cakebaker/scss-syntax.vim'
 "
 " Brief help
 " :BundleList          - list configured bundles
