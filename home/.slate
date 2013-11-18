@@ -1,0 +1,16 @@
+# Configs
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config secondsBetweenRepeat 0.1
+config checkDefaultsOnLoad true
+config focusCheckWidthMax 3000
+
+# Window Hints
+bind esc:cmd hint
+
+# Switch currently doesn't work well so I'm commenting it out until I fix it.
+#bind tab:ctrl switch
+
+# Grid
+bind esc:ctrl grid
