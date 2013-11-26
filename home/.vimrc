@@ -67,7 +67,7 @@ let g:ctrlp_cmd = 'CtrlP'
 " https://github.com/kien/ctrlp.vim#basic-options
 let g:ctrlp_working_path_mode = 'c'
 " custom ignore https://github.com/kien/ctrlp.vim/issues/58
-let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\|*.pyc'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\'
 
 " open new files in tab
 " https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
