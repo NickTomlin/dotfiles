@@ -84,4 +84,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " https://github.com/kien/ctrlp.vim#basic-options
 let g:ctrlp_working_path_mode = 'c'
-
+" open new files in tab
+" https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
