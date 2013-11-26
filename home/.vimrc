@@ -1,7 +1,16 @@
-" ===  Basics
-syntax on
+" === Vundle
+" required by vundle
 set nocompatible              " be iMproved
 filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Grab Vundle Bundles
+source ~/.vim/repos.vim
+
+" ===  Basics
+syntax on
 set number
 " share system clipboard on osx
 set clipboard=unnamed
@@ -39,39 +48,12 @@ set clipboard=unnamed
 " ===  Syntax 
 " enable per-language settings: http://stackoverflow.com/a/1743255/1048479
 " required by vundle
+filetype plugin on
 filetype plugin indent on
+scriptencoding utf-8
 
-" === Packages
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'L9'
-Bundle 'scrooloose/nerdtree'
-Bundle 'FuzzyFinder'
-Bundle 'mattn/emmet-vim'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'tomtom/tcomment_vim'
-" lint thy php! (broken atm)
-" Bundle 'joonty/vim-phpqa'
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
-"
+" === Plugins
 
 "" * NERD_tree
 autocmd VimEnter * if !argc() | NERDTree | endif
@@ -84,6 +66,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " https://github.com/kien/ctrlp.vim#basic-options
 let g:ctrlp_working_path_mode = 'c'
+" custom ignore https://github.com/kien/ctrlp.vim/issues/58
+let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\|*.pyc'
+
 " open new files in tab
 " https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
 let g:ctrlp_prompt_mappings = {
