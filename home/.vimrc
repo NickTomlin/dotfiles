@@ -3,6 +3,8 @@ syntax on
 set nocompatible              " be iMproved
 filetype off                  " required!
 set number
+" share system clipboard on osx
+set clipboard=unnamed
 
 " === Looks
 colorscheme Tomorrow-Night-Eighties
