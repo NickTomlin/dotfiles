@@ -1,6 +1,7 @@
-# Project files #
+# Editor Related things #
 .sublime-workspace
 .sublime-project
+.swp
 # Preprocessing #
 .sass-cache
 # Compiled source #
