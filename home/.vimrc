@@ -12,6 +12,7 @@ source ~/.vim/repos.vim
 " ===  Basics
 syntax on
 set number
+scriptencoding utf-8
 " share system clipboard on osx
 set clipboard=unnamed
 
