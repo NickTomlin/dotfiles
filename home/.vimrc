@@ -81,7 +81,7 @@ nmap <C-k><C-b> :NERDTreeToggle<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " https://github.com/kien/ctrlp.vim#basic-options
-let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 'a'
 " custom ignore https://github.com/kien/ctrlp.vim/issues/58
 let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\'
 
