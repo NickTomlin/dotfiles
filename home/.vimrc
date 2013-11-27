@@ -63,6 +63,8 @@ set clipboard=unnamed
 " ===  Syntax 
 " required by vundle
 
+" === Files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 
 
 " === Plugins
