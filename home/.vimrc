@@ -61,15 +61,14 @@ set pastetoggle=<F2>
 set clipboard=unnamed
 
 " ===  Syntax 
-" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
 " required by vundle
-filetype plugin on
-filetype plugin indent on
-scriptencoding utf-8
+
 
 
 " === Plugins
-
+" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
+filetype plugin on
+filetype plugin indent on
 "" * NERD_tree
 autocmd VimEnter * if !argc() | NERDTree | endif
 " I come from the sublime text world, so this makes a lot of sense to me
