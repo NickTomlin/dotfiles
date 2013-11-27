@@ -77,6 +77,9 @@ autocmd VimEnter * if !argc() | NERDTree | endif
 nmap <C-k><C-b> :NERDTreeToggle<CR>
 
 
+"" * NERDCommenter
+nmap <M-/> :NERDComToggleComment
+
 "" * ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
