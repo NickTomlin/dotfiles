@@ -404,6 +404,11 @@ defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
+# remove the idiotic "find cursor" command from iterm2
+# http://superuser.com/a/287419/146376
+# not sure what is going to happen if iterm2 is not installed :) 
+# defaults write com.googlecode.iterm2 NSUserKeyEquivalents -dict-add "Find Cursor" nil
+
 
 
 ###############################################################################
