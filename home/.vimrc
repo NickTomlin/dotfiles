@@ -15,6 +15,20 @@ set number
 " share system clipboard on osx
 set clipboard=unnamed
 
+" === Directories
+" stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
+set backup                         " backups are nice ...
+set backupdir=$HOME/.vimbackup     " but not when they clog .
+set directory=$HOME/.vimswap       " Same for swap files
+set viewdir=$HOME/.vimviews        " same for view files
+set undodir=$HOME/.vimundo         " same for undo files
+
+" Creating directories if they don't exist
+silent execute '!mkdir -p $HOME/.vimbackup'
+silent execute '!mkdir -p $HOME/.vimswap'
+silent execute '!mkdir -p $HOME/.vimviews'
+silent execute '!mkdir -p $HOME/.vimundo'
+
 " === Looks
 colorscheme Tomorrow-Night-Eighties
 
