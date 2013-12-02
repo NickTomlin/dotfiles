@@ -15,7 +15,7 @@ Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-haml'
+Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'plasticboy/vim-markdown'
 " lint thy php! (broken atm)
 " Bundle 'joonty/vim-phpqa'
