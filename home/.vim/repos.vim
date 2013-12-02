@@ -16,5 +16,6 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-haml'
+Bundle 'plasticboy/vim-markdown'
 " lint thy php! (broken atm)
 " Bundle 'joonty/vim-phpqa'
