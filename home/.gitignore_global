@@ -1,7 +1,7 @@
 # Editor Related things #
 .sublime-workspace
 .sublime-project
-.swp
+*.swp
 # Preprocessing #
 .sass-cache
 # Compiled source #
