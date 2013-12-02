@@ -14,7 +14,10 @@ syntax on
 set number
 scriptencoding utf-8
 " share system clipboard on osx
-set clipboard=unnamed
+" but not in tmux!
+if $TMUX == ''
+      set clipboard+=unnamed
+endif
 
 " === Directories
 " stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
