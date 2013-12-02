@@ -40,6 +40,7 @@ set laststatus=2
 " statusline stolen from http://stackoverflow.com/a/5380230/1048479
 set statusline=%f         " Path to the file
 set statusline+=%=        " Switch to the right side
+set statusline+=%1*%4v\ %* "virtual column number
 set statusline+=%l        " Current line
 set statusline+=/         " Separator
 set statusline+=%L        " Total lines
@@ -50,9 +51,7 @@ set statusline+=%L        " Total lines
 "set statusline +=%3*%y%*                "file type
 "set statusline +=%4*\ %<%F%*            "full path
 "set statusline +=%2*%m%*                "modified flag
-"set statusline +=%1*%=%5l%*             "current line
 "set statusline +=%2*/%L%*               "total lines
-"set statusline +=%1*%4v\ %*             "virtual column number
 "set statusline +=%2*0x%04B\ %*          "character under cursor
 
 " === Input
@@ -60,10 +59,8 @@ set statusline+=%L        " Total lines
 set mouse=a
 " non insane paste
 set pastetoggle=<F2>
-" use system clipboard
-set clipboard=unnamed
 
-" ===  Syntax 
+" ===  Syntax
 " required by vundle
 
 " === Files
