@@ -43,7 +43,7 @@ export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share
 export ZSH_THEME="sorin" # Sweet git magic
 
 # --- PLUGINS (~/.oh-my-zsh/plugins/*) ---
-plugins=(git)
+plugins=(git django)
 source $ZSH/oh-my-zsh.sh
 
 # --- Shell Options
