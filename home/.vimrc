@@ -18,6 +18,23 @@ scriptencoding utf-8
 if $TMUX == ''
       set clipboard+=unnamed
 endif
+" * SPLITS
+" http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+" more natural split opening
+set splitbelow
+set splitright
+
+" * indentation
+set shiftwidth=4
+set tabstop=4
+" override this later on if need be in after
+set autoindent
+
+" * breaks
+" http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+set wrap
+set linebreak
+set nolist  " list disables linebreak
 
 " === Directories
 " stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
@@ -61,7 +78,8 @@ set mouse=a
 set pastetoggle=<F2>
 
 " ===  Syntax
-" required by vundle
+" associate *.md with markdown filetype
+au BufRead,BufNewFile *.md setfiletype markdown
 
 " === Files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
