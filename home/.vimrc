@@ -12,8 +12,26 @@ source ~/.vim/repos.vim
 " ===  Basics
 syntax on
 set number
+scriptencoding utf-8
 " share system clipboard on osx
-set clipboard=unnamed
+" but not in tmux!
+if $TMUX == ''
+      set clipboard+=unnamed
+endif
+
+" === Directories
+" stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
+set backup                         " backups are nice ...
+set backupdir=$HOME/.vimbackup     " but not when they clog .
+set directory=$HOME/.vimswap       " Same for swap files
+set viewdir=$HOME/.vimviews        " same for view files
+set undodir=$HOME/.vimundo         " same for undo files
+
+" Creating directories if they don't exist
+silent execute '!mkdir -p $HOME/.vimbackup'
+silent execute '!mkdir -p $HOME/.vimswap'
+silent execute '!mkdir -p $HOME/.vimviews'
+silent execute '!mkdir -p $HOME/.vimundo'
 
 " === Looks
 colorscheme Tomorrow-Night-Eighties
@@ -22,6 +40,7 @@ set laststatus=2
 " statusline stolen from http://stackoverflow.com/a/5380230/1048479
 set statusline=%f         " Path to the file
 set statusline+=%=        " Switch to the right side
+set statusline+=%1*%4v\ %* "virtual column number
 set statusline+=%l        " Current line
 set statusline+=/         " Separator
 set statusline+=%L        " Total lines
@@ -32,9 +51,7 @@ set statusline+=%L        " Total lines
 "set statusline +=%3*%y%*                "file type
 "set statusline +=%4*\ %<%F%*            "full path
 "set statusline +=%2*%m%*                "modified flag
-"set statusline +=%1*%=%5l%*             "current line
 "set statusline +=%2*/%L%*               "total lines
-"set statusline +=%1*%4v\ %*             "virtual column number
 "set statusline +=%2*0x%04B\ %*          "character under cursor
 
 " === Input
@@ -42,30 +59,32 @@ set statusline+=%L        " Total lines
 set mouse=a
 " non insane paste
 set pastetoggle=<F2>
-" use system clipboard
-set clipboard=unnamed
 
-" ===  Syntax 
-" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
+" ===  Syntax
 " required by vundle
-filetype plugin on
-filetype plugin indent on
-scriptencoding utf-8
+
+" === Files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 
 
 " === Plugins
-
+" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
+filetype plugin on
+filetype plugin indent on
 "" * NERD_tree
 autocmd VimEnter * if !argc() | NERDTree | endif
 " I come from the sublime text world, so this makes a lot of sense to me
 nmap <C-k><C-b> :NERDTreeToggle<CR>
 
 
+"" * NERDCommenter
+nmap <M-/> :NERDComToggleComment
+
 "" * ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " https://github.com/kien/ctrlp.vim#basic-options
-let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 'a'
 " custom ignore https://github.com/kien/ctrlp.vim/issues/58
 let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\'
 
