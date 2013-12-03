@@ -1,3 +1,5 @@
+" unbind all autocommands
+autocmd!
 " === Vundle
 " required by vundle
 set nocompatible              " be iMproved
