@@ -13,9 +13,15 @@ Bundle 'mattn/emmet-vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'ervandew/supertab'
+" { snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/vim-snippets"
+Bundle "garbas/vim-snipmate"
+" } 
+Bundle "lepture/vim-jinja"
 " lint thy php! (broken atm)
 " Bundle 'joonty/vim-phpqa'
