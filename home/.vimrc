@@ -13,8 +13,10 @@ source ~/.vim/repos.vim
 
 " ===  Basics
 syntax on
+set t_Co=256 " 256 colors
 set number
 scriptencoding utf-8
+set ttyfast " for faster redraws etc
 " share system clipboard on osx
 " but not in tmux!
 if $TMUX == ''
@@ -54,6 +56,9 @@ silent execute '!mkdir -p $HOME/.vimundo'
 
 " === Looks
 colorscheme Tomorrow-Night-Eighties
+set title
+set scrolloff=3 " lines above/below cursor
+set vb t_vb= " disable beep and flashing
 
 set laststatus=2
 " statusline stolen from http://stackoverflow.com/a/5380230/1048479
@@ -86,31 +91,37 @@ au BufRead,BufNewFile *.md setfiletype markdown
 " === Files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 
-
-" === Plugins
-" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
-filetype plugin on
-filetype plugin indent on
-"" * NERD_tree
-autocmd VimEnter * if !argc() | NERDTree | endif
-" I come from the sublime text world, so this makes a lot of sense to me
-nmap <C-k><C-b> :NERDTreeToggle<CR>
+""" Keybindings {{{
+	" Quickly edit/source .vimrc
+	noremap <leader>ve :edit $HOME/.vimrc<CR>
+	noremap <leader>vs :source $HOME/.vimrc<CR>
+""" }}}
 
 
-"" * NERDCommenter
-nmap <M-/> :NERDComToggleComment
+""" Plugins {{{
+	" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
+	filetype plugin on
+	filetype plugin indent on
+	"" * NERD_tree
+	autocmd VimEnter * if !argc() | NERDTree | endif
+	" I come from the sublime text world, so this makes a lot of sense to me
+	nmap <C-k><C-b> :NERDTreeToggle<CR>
 
-"" * ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-" https://github.com/kien/ctrlp.vim#basic-options
-let g:ctrlp_working_path_mode = 'a'
-" custom ignore https://github.com/kien/ctrlp.vim/issues/58
-let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\'
+	"" * TComment
+	map <leader>c <c-_><c-_>
 
-" open new files in tab
-" https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+	"" * ctrlp
+	let g:ctrlp_map = '<c-p>'
+	let g:ctrlp_cmd = 'CtrlP'
+	" https://github.com/kien/ctrlp.vim#basic-options
+	let g:ctrlp_working_path_mode = 'a'
+	" custom ignore https://github.com/kien/ctrlp.vim/issues/58
+	let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\'
+
+	" open new files in tab
+	" https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
+	let g:ctrlp_prompt_mappings = {
+		\ 'AcceptSelection("e")': ['<c-t>'],
+		\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+		\ }
+""" }}}
