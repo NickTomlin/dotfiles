@@ -22,6 +22,9 @@ set ttyfast " for faster redraws etc
 if $TMUX == ''
       set clipboard+=unnamed
 endif
+" Disable annoying ex mode (Q)
+map Q <nop>
+
 " * SPLITS
 " http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " more natural split opening
@@ -87,6 +90,7 @@ set pastetoggle=<F2>
 " ===  Syntax
 " associate *.md with markdown filetype
 au BufRead,BufNewFile *.md setfiletype markdown
+au BufRead,BufNewFile *.twig setfiletype jinja
 
 " === Files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
