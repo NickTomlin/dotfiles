@@ -20,7 +20,7 @@ set ttyfast " for faster redraws etc
 " share system clipboard on osx
 " but not in tmux!
 if $TMUX == ''
-      set clipboard+=unnamed
+    set clipboard+=unnamed
 endif
 " Disable annoying ex mode (Q)
 map Q <nop>
