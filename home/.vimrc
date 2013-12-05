@@ -25,6 +25,11 @@ endif
 " Disable annoying ex mode (Q)
 map Q <nop>
 
+" smart case searching
+" http://stackoverflow.com/a/2288438/1048479
+set ignorecase
+set smartcase
+
 " * SPLITS
 " http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " more natural split opening
@@ -34,6 +39,7 @@ set splitright
 " * indentation
 set shiftwidth=4
 set tabstop=4
+set expandtab " no tabs!
 " override this later on if need be in after
 set autoindent
 
