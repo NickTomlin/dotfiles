@@ -1,5 +1,5 @@
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
@@ -16,12 +16,19 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'ervandew/supertab'
-" { snipmate
+" {{{ snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
-" } 
+" }}}
 Bundle "lepture/vim-jinja"
+Bundle 'bronson/vim-trailing-whitespace'
+" {{{ javascript / coffee script
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'vim-scripts/JavaScript-Indent'
+Bundle 'kchmck/vim-coffee-script'
+"}}}
+
 " lint thy php! (broken atm)
 " Bundle 'joonty/vim-phpqa'
