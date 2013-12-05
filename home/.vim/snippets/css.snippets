@@ -1,0 +1,22 @@
+snippet /*doc
+	/*doc
+	---
+	title: ${1: title}
+	name: ${2: name}
+	category: ${3: category}
+	---
+
+	${4: description}
+	\`\`\`
+	${5: code}
+	\`\`\`
+
+	*/
+snippet mixin
+	/**
+	 * ${1:name}
+	 * @param ${2:param}
+	 */
+	@mixin $1 ($$2) {
+		${0}
+	}
