@@ -105,8 +105,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	" Quickly edit/source .vimrc
 	noremap <leader>ve :edit $HOME/.vimrc<CR>
 	noremap <leader>vs :source $HOME/.vimrc<CR>
+	" Quickly edit bundles
+	noremap <leader>be :edit $HOME/.vim/repos.vim<CR>
 """ }}}
-
 
 """ Plugins {{{
 	" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
