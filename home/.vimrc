@@ -96,7 +96,10 @@ set pastetoggle=<F2>
 " ===  Syntax
 " associate *.md with markdown filetype
 au BufRead,BufNewFile *.md setfiletype markdown
-au BufRead,BufNewFile *.twig setfiletype jinja
+" we need to use set filetype instead of setfiletype
+" here because setfiletype will not work on a filetype that
+" has already been set. Whew. Now say that 5 times in a row.
+au BufRead,BufNewFile *.twig set filetype=jinja
 
 " === Files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
