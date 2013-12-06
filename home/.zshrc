@@ -116,7 +116,7 @@ fi
 
 # --- "Portable" bash aliases
 alias zshrc='$EDITOR ~/.zshrc'
-alias blog='$EDITOR ~/Google\ Drive/sync/octoblog-drafts'
+alias blog='$EDITOR ~/Dropbox/sync/octoblog-drafts'
 
 # --- Convenience
 ## Print the current date (for backups, etc)
