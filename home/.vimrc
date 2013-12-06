@@ -126,6 +126,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	"" * TComment
 	map <leader>c <c-_><c-_>
 
+    "" * vim-trailing-whitespace"
+    map <leader>fws :FixWhitespace<CR>
+
 	"" * ctrlp
 	let g:ctrlp_map = '<c-p>'
 	let g:ctrlp_cmd = 'CtrlP'
