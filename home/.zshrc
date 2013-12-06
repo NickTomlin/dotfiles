@@ -123,6 +123,11 @@ alias blog='$EDITOR ~/Google\ Drive/sync/octoblog-drafts'
 nicedate=$(date +%m-%d-%y)
 ## Line numbers with cat
 alias catn='cat -n'
+## got to git root directory
+## http://stackoverflow.com/a/957978/1048479
+function groot() {
+  cd "$(git rev-parse --show-toplevel)"
+}
 
 ######
 # FUNCTIONS (@todo consider moving to a seperate file)
