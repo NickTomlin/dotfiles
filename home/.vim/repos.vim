@@ -31,6 +31,7 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 "}}}
+Bundle 'editorconfig/editorconfig-vim'
 
 " lint thy php! (broken atm)
 " Bundle 'joonty/vim-phpqa'
