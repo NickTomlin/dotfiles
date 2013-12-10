@@ -35,6 +35,8 @@ set smartcase
 " more natural split opening
 set splitbelow
 set splitright
+" Equalize splits after a window resize (should this be in an autocommand group?)
+autocmd VimResized * wincmd =
 
 " * indentation
 set shiftwidth=4
