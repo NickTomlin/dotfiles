@@ -25,16 +25,24 @@ endif
 " Disable annoying ex mode (Q)
 map Q <nop>
 
+" * SEARCH
+" clear highlighted seaches
+set incsearch                    " find as you type search
+set hlsearch                     " highlight search terms
 " smart case searching
 " http://stackoverflow.com/a/2288438/1048479
 set ignorecase
 set smartcase
+" clear highlighted searches with enter
+nnoremap <CR> :noh<CR><CR>
 
 " * SPLITS
 " http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " more natural split opening
 set splitbelow
 set splitright
+" Equalize splits after a window resize (should this be in an autocommand group?)
+autocmd VimResized * wincmd =
 
 " * indentation
 set shiftwidth=4
