@@ -9,16 +9,21 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'L9'
 Bundle 'scrooloose/nerdtree'
 Bundle 'FuzzyFinder'
-" {{{ html/css
-Bundle 'mattn/emmet-vim'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle "lepture/vim-jinja"
-" }}}
+Bundle 'scrooloose/syntastic'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'ervandew/supertab'
 Bundle 'jiangmiao/auto-pairs'
+
+" {{{ html/css
+Bundle 'mattn/emmet-vim'
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle "lepture/vim-jinja"
+" }}}
+"{{{ Django
+Bundle 'robhudson/snipmate_for_django'
+"}}}
 " {{{ snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -31,7 +36,6 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 "}}}
-Bundle 'editorconfig/editorconfig-vim'
 
 " lint thy php! (broken atm)
-" Bundle 'joonty/vim-phpqa'
+
