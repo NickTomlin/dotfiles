@@ -118,8 +118,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	noremap <leader>vs :source $HOME/.vimrc<CR>
 	" Quickly edit bundles
 	noremap <leader>be :edit $HOME/.vim/repos.vim<CR>
-    " Quickly edit snippets
-    noremap <leader>se :edit $HOME/.vim/snippets<CR>
+  " Quickly edit snippets
+  noremap <leader>se :edit $HOME/.vim/snippets<CR>
+  """ command line mode {{{
+    " cnoremap <C-n> <Down>
+    " cnoremap <C-b> <Left>
+  """ }}}
 """ }}}
 
 """ Plugins {{{
