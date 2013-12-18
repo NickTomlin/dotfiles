@@ -215,7 +215,7 @@ cdf() {  # short for cdfinder
 ## RVM
 ## Load RVM into a shell session *as a function* (consider seeing here: https://gist.github.com/1015460)
 ## dang, rvm is slow dawg. I'm not including it
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # --- NODE
 
