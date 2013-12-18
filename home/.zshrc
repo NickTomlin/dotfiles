@@ -35,7 +35,8 @@ ZSH=$HOME/.oh-my-zsh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # --- PATH
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+# prefer user packages to system ones
+export PATH='/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin'
 # local config / aliases
 [[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
 
