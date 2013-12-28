@@ -12,10 +12,12 @@ Bundle 'FuzzyFinder'
 Bundle 'scrooloose/syntastic'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'plasticboy/vim-markdown'
 Bundle 'ervandew/supertab'
 Bundle 'jiangmiao/auto-pairs'
-
+"{{{ markdown
+Bundle 'tpope/vim-markdown'
+Bundle 'jtratner/vim-flavored-markdown'
+"}}}
 " {{{ html/css
 Bundle 'mattn/emmet-vim'
 Bundle 'cakebaker/scss-syntax.vim'

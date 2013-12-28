@@ -35,7 +35,8 @@ ZSH=$HOME/.oh-my-zsh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # --- PATH
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+# prefer user packages to system ones
+export PATH='/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin'
 # local config / aliases
 [[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
 
@@ -211,10 +212,8 @@ cdf() {  # short for cdfinder
 # --- RUBY
 ## PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-## RVM
-## Load RVM into a shell session *as a function* (consider seeing here: https://gist.github.com/1015460)
-## dang, rvm is slow dawg. I'm not including it
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+## RBENV
+eval "$(rbenv init -)"
 
 # --- NODE
 

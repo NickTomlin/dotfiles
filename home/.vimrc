@@ -53,9 +53,9 @@ set autoindent
 
 " * breaks
 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-set wrap
-set linebreak
-set nolist  " list disables linebreak
+set wrap linebreak nolist  " list disables linebreak
+command! -nargs=* Wrap set wrap linebreak nolist
+
 
 " === Directories
 " stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
@@ -102,8 +102,6 @@ set mouse=a
 set pastetoggle=<F2>
 
 " ===  Syntax
-" associate *.md with markdown filetype
-au BufRead,BufNewFile *.md setfiletype markdown
 " we need to use set filetype instead of setfiletype
 " here because setfiletype will not work on a filetype that
 " has already been set. Whew. Now say that 5 times in a row.
@@ -123,8 +121,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	noremap <leader>vs :source $HOME/.vimrc<CR>
 	" Quickly edit bundles
 	noremap <leader>be :edit $HOME/.vim/repos.vim<CR>
-    " Quickly edit snippets
-    noremap <leader>se :edit $HOME/.vim/snippets<CR>
+  " Quickly edit snippets
+  noremap <leader>se :edit $HOME/.vim/snippets<CR>
+  """ command line mode {{{
+    " cnoremap <C-n> <Down>
+    " cnoremap <C-b> <Left>
+  """ }}}
 """ }}}
 
 """ Plugins {{{
