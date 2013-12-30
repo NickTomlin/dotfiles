@@ -129,6 +129,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
 	filetype plugin on
 	filetype plugin indent on
+    "" * MATCHIT (included in most vims by default, grab it from https://github.com/vim-scripts/matchit.zipc if it is not
+    runtime macros/matchit.vim
 	"" * NERD_tree
 	autocmd VimEnter * if !argc() | NERDTree | endif
 	" I come from the sublime text world, so this makes a lot of sense to me
