@@ -213,7 +213,7 @@ cdf() {  # short for cdfinder
 ## PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ## RBENV
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # --- NODE
 
