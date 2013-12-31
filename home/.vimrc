@@ -24,6 +24,8 @@ if $TMUX == ''
 endif
 " Disable annoying ex mode (Q)
 map Q <nop>
+" the /g flag on :s substitutions by default
+set gdefault
 
 " * SEARCH
 " clear highlighted seaches
