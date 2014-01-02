@@ -24,6 +24,8 @@ if $TMUX == ''
 endif
 " Disable annoying ex mode (Q)
 map Q <nop>
+" the /g flag on :s substitutions by default
+set gdefault
 
 " * SEARCH
 " clear highlighted seaches
@@ -76,6 +78,8 @@ colorscheme Tomorrow-Night-Eighties
 set title
 set scrolloff=3 " lines above/below cursor
 set vb t_vb= " disable beep and flashing
+set cursorline " I get lost sometimes T_T
+set colorcolumn=80 " color long lines
 
 set laststatus=2
 " statusline stolen from http://stackoverflow.com/a/5380230/1048479
@@ -133,6 +137,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
 	filetype plugin on
 	filetype plugin indent on
+    "" * MATCHIT (included in most vims by default, grab it from https://github.com/vim-scripts/matchit.zipc if it is not
+    runtime macros/matchit.vim
 	"" * NERD_tree
 	autocmd VimEnter * if !argc() | NERDTree | endif
 	" I come from the sublime text world, so this makes a lot of sense to me
