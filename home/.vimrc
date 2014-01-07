@@ -164,4 +164,15 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 		\ 'AcceptSelection("e")': ['<c-t>'],
 		\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
 		\ }
+    " * Syntastic
+    " On by default, turn it off for html
+    let g:syntastic_mode_map = { 'mode': 'active',
+        \ 'active_filetypes': [],
+        \ 'passive_filetypes': ['html'] }
+    " requires pyflakes (``pip install pyflakes``)
+    let g:syntastic_python_checkers = ['flake8']
+    " Better :sign interface symbols
+    let g:syntastic_error_symbol = '✗'
+    let g:syntastic_warning_symbol = '!'
 """ }}}
+
