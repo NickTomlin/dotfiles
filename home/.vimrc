@@ -36,7 +36,7 @@ set hlsearch                     " highlight search terms
 set ignorecase
 set smartcase
 " clear highlighted searches with enter
-nnoremap <CR> :noh<CR><CR>
+map  <silent> <LocalLeader>nh :nohls<CR>
 
 " * SPLITS
 " http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
