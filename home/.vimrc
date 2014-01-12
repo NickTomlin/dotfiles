@@ -114,7 +114,8 @@ au BufRead,BufNewFile *.module set filetype=php
 " django
 autocmd FileType python set ft=python.django " For SnipMate
 autocmd FileType html set ft=htmldjango.html " For SnipMate
-
+" handlebars
+au BufRead,BufNewFile *.handlebars set filetype=html
 
 " === Files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
