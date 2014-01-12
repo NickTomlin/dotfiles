@@ -4,8 +4,6 @@
 export PATH="/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/share/npm/bin:/Applications/acquia-drupal/drush:$PATH"
 # source our aliases file
 source ~/.bash_aliases
-# bashmarks
-source ~/.local/bin/bashmarks.sh
 # enable colors in terminal
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -27,5 +25,4 @@ export EDITOR=/usr/bin/vim
 # enable vi editing mode in terminal (will take some getting used to, but awesome!)
 set -o vi
 
-# Use MacVim instead of Vim (for system keyboard stuff, etc)
-alias vim='/usr/local/Cellar/macvim/7.3-65/MacVim.app/Contents/MacOS/vim'
+[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
