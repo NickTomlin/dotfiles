@@ -14,6 +14,8 @@ Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'ervandew/supertab'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'milesz/ack.vim'
+Bundle 'TinyBufferExplorer'
 "{{{ markdown
 Bundle 'tpope/vim-markdown'
 Bundle 'jtratner/vim-flavored-markdown'
