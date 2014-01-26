@@ -157,6 +157,10 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
     " cnoremap <C-n> <Down>
     " cnoremap <C-b> <Left>
   """ }}}
+  """ convience insert methods {{{
+      " less awkward =>
+      imap <C-L> <SPACE>=><SPACE>
+  """ }}}
 """ }}}
 
 """ Plugins {{{
