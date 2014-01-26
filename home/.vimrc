@@ -27,6 +27,9 @@ map Q <nop>
 " the /g flag on :s substitutions by default
 set gdefault
 
+" Autoremove trailing spaces when saving the buffer
+autocmd FileType c,cpp,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 " * SEARCH
 " clear highlighted seaches
 set incsearch                    " find as you type search
