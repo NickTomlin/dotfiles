@@ -62,8 +62,11 @@ set autoindent
 
 " * breaks
 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-set wrap linebreak nolist  " list disables linebreak
-command! -nargs=* Wrap set wrap linebreak nolist
+set wrap
+set linebreak
+set nolist  " list disables linebreak"
+set textwidth=0
+set wrapmargin=0
 
 
 " === Directories
