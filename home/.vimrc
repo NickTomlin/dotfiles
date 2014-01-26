@@ -71,9 +71,11 @@ set wrapmargin=0
 
 " === Directories
 " stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
+" we use the <path>// notation to try to reduce clobbering a little bit
 set backup                         " backups are nice ...
 set backupdir=$HOME/.vimbackup     " but not when they clog .
-set directory=$HOME/.vimswap       " Same for swap files
+" no swap files for the time being
+"set directory=$HOME/.vimswap//     " Same for swap files
 set viewdir=$HOME/.vimviews        " same for view files
 set undodir=$HOME/.vimundo         " same for undo files
 
