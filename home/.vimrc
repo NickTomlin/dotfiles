@@ -98,8 +98,9 @@ colorscheme Tomorrow-Night-Eighties
 set title
 set scrolloff=3 " lines above/below cursor
 set vb t_vb= " disable beep and flashing
-set cursorline " I get lost sometimes T_T
-set colorcolumn=80 " color long lines
+" commenting out to troubleshoot slowness
+" set cursorline " I get lost sometimes T_T
+" set colorcolumn=80 " color long lines
 
 set laststatus=2
 " statusline stolen from http://stackoverflow.com/a/5380230/1048479
