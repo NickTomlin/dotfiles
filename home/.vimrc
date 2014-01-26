@@ -104,8 +104,11 @@ set vb t_vb= " disable beep and flashing
 
 set laststatus=2
 " statusline stolen from http://stackoverflow.com/a/5380230/1048479
-set statusline=%f         " Path to the file
+set statusline=\%{fugitive#statusline()} " git status via fugitive
+set statusline+=\:\       " Separator
+set statusline+=%f        " Path to the file
 set statusline+=%=        " Switch to the right side
+set statusline+=%3*%y%*                "file type
 set statusline+=%1*%4v\ %* "virtual column number
 set statusline+=%l        " Current line
 set statusline+=/         " Separator
@@ -114,7 +117,6 @@ set statusline+=%L        " Total lines
 "set statusline=
 "set statusline +=%1*\ %n\ %*            "buffer number
 "set statusline +=%5*%{&ff}%*            "file format
-"set statusline +=%3*%y%*                "file type
 "set statusline +=%4*\ %<%F%*            "full path
 "set statusline +=%2*%m%*                "modified flag
 "set statusline +=%2*/%L%*               "total lines
