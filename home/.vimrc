@@ -172,7 +172,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	"" * NERD_tree
 	autocmd VimEnter * if !argc() | NERDTree | endif
 	" I come from the sublime text world, so this makes a lot of sense to me
-	nmap <leader>nt :NERDTreeToggle<CR>
+	map <leader>nt :NERDTreeToggle<CR>
+  map <silent> <LocalLeader>nf :NERDTreeFind<CR>
 
 	"" * TComment
 	map <leader>c <c-_><c-_>
