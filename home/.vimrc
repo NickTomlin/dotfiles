@@ -50,8 +50,12 @@ set splitright
 autocmd VimResized * wincmd =
 
 " * indentation
-set shiftwidth=4
-set tabstop=4
+set shiftround " only tab in multiples of two
+" keep visual selection when shifting
+noremap > >gv
+vnoremap < <gv
+set shiftwidth=2
+set tabstop=2
 set expandtab " no tabs!
 " override this later on if need be in after
 set autoindent
