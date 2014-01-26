@@ -80,10 +80,18 @@ set viewdir=$HOME/.vimviews        " same for view files
 set undodir=$HOME/.vimundo         " same for undo files
 
 " Creating directories if they don't exist
+" keeping swapdir for the time being, in case there is a need to read it
 silent execute '!mkdir -p $HOME/.vimbackup'
 silent execute '!mkdir -p $HOME/.vimswap'
 silent execute '!mkdir -p $HOME/.vimviews'
 silent execute '!mkdir -p $HOME/.vimundo'
+
+" disable swapfiles
+set noswapfile
+
+" === EX {{{
+set wildmenu " nice, zsh-like completion for ex commands
+" }}}
 
 " === Looks
 colorscheme Tomorrow-Night-Eighties
