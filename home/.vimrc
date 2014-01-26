@@ -184,6 +184,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	"" * ctrlp
 	let g:ctrlp_map = '<c-p>'
 	let g:ctrlp_cmd = 'CtrlP'
+    " mirror shared environment setting for local vimrc
+    " not sure if this is the best way to do this
+    nmap <leader>ff :CtrlP<CR>
 	" https://github.com/kien/ctrlp.vim#basic-options
 	let g:ctrlp_working_path_mode = 'a'
 	" custom ignore https://github.com/kien/ctrlp.vim/issues/58
