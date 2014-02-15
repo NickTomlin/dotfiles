@@ -11,4 +11,6 @@ install reattach-to-user-namespace
 tap phinze/cask
 install brew-cask
 cask install google-chrome
+# make sure alfred is installed :)
+cask alfred
 update
