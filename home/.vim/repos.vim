@@ -15,7 +15,7 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'ervandew/supertab'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'mileszs/ack.vim'
-Bundle 'TinyBufferExplorer'
+Bundle 'bufexplorer.zip'
 "{{{ markdown
 Bundle 'tpope/vim-markdown'
 Bundle 'jtratner/vim-flavored-markdown'
@@ -39,6 +39,7 @@ Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'jimmyhchan/dustjs.vim'
 "}}}
 
 " lint thy php! (broken atm)

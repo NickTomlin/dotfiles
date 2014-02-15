@@ -150,12 +150,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " shorcut for only
   noremap <leader>on :on<CR>
 	" Quickly edit/source .vimrc
-	noremap <leader>ve :edit $HOME/.vimrc<CR>
+	noremap <leader>ve :tabedit $HOME/.vimrc<CR>
 	noremap <leader>vs :source $HOME/.vimrc<CR>
-	" Quickly edit bundles
-	noremap <leader>be :edit $HOME/.vim/repos.vim<CR>
+	" Quickly edit vundle bundles
+	noremap <leader>vb :tabedit $HOME/.vim/repos.vim<CR>
   " Quickly edit snippets
-  noremap <leader>se :edit $HOME/.vim/snippets<CR>
+  noremap <leader>se :tabedit $HOME/.vim/snippets<CR>
   """ command line mode {{{
     " cnoremap <C-n> <Down>
     " cnoremap <C-b> <Left>
@@ -170,8 +170,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	" enable per-language settings: http://stackoverflow.com/a/1743255/1048479
 	filetype plugin on
 	filetype plugin indent on
-    "" * MATCHIT (included in most vims by default, grab it from https://github.com/vim-scripts/matchit.zipc if it is not
-    runtime macros/matchit.vim
+  "" * MATCHIT (included in most vims by default, grab it from https://github.com/vim-scripts/matchit.zipc if it is not
+  runtime macros/matchit.vim
+
 	"" * NERD_tree
 	autocmd VimEnter * if !argc() | NERDTree | endif
 	" I come from the sublime text world, so this makes a lot of sense to me
@@ -181,8 +182,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	"" * TComment
 	map <leader>c <c-_><c-_>
 
-    "" * vim-trailing-whitespace"
-    map <leader>fws :FixWhitespace<CR>
+  "" * vim-trailing-whitespace"
+  map <leader>fws :FixWhitespace<CR>
+
+  "" * surround
+  " compatability with jimmychan/dustjs.vim
+  let g:surround_{char2nr('d')} = "{\r}"
 
 	"" * ctrlp
 	let g:ctrlp_map = '<c-p>'
@@ -194,6 +199,10 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	let g:ctrlp_working_path_mode = 'a'
 	" custom ignore https://github.com/kien/ctrlp.vim/issues/58
 	let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\'
+
+  " open multiple files (maximum of 4)
+  " (default bindings are <c-o> and <c-z>)
+  let g:ctrlp_open_multiple_files = '4vjr'
 
 	" open new files in tab
 	" https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
