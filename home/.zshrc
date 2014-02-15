@@ -210,10 +210,11 @@ cdf() {  # short for cdfinder
 ######
 
 # --- RUBY
-## PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ## RBENV
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+alias be="bundle exec"
 
 # --- NODE
 
@@ -230,4 +231,3 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Heroku
 [[ -d "/usr/bin/heroku" ]] && export PATH="/usr/local/heroku/bin:$PATH"
-
