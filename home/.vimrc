@@ -95,6 +95,7 @@ set wildmenu " nice, zsh-like completion for ex commands
 
 " === Looks
 colorscheme Tomorrow-Night-Eighties
+set background=dark
 set title
 set scrolloff=3 " lines above/below cursor
 set vb t_vb= " disable beep and flashing
@@ -146,6 +147,8 @@ au BufRead,BufNewFile Guardfile set filetype=ruby
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 
 """ Keybindings {{{
+  " shorcut for only
+  noremap <leader>on :on<CR>
 	" Quickly edit/source .vimrc
 	noremap <leader>ve :edit $HOME/.vimrc<CR>
 	noremap <leader>vs :source $HOME/.vimrc<CR>
