@@ -324,6 +324,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("pythonExClass", s:orange, "", "")
 
 	" JavaScript Highlighting
+  call <SID>X("javaScriptRegexpString", s:orange, "", "")
 	call <SID>X("javaScriptBraces", s:foreground, "", "")
 	call <SID>X("javaScriptFunction", s:purple, "", "")
 	call <SID>X("javaScriptConditional", s:purple, "", "")
