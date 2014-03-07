@@ -30,6 +30,8 @@ exists () {
 ######
 
 ZSH=$HOME/.oh-my-zsh
+# set custom path for personal themes/plugins
+ZSH_CUSTOM=$HOME/.terminal_config
 
 # --- Homeschick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
@@ -41,7 +43,7 @@ export PATH='/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/
 [[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
 
 # --- Themeing
-export ZSH_THEME="sorin" # Sweet git magic
+export ZSH_THEME="sorin-modified" # Sweet git magic
 
 # --- PLUGINS (~/.oh-my-zsh/plugins/*) ---
 plugins=(git django)
