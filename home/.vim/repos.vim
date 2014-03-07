@@ -20,6 +20,9 @@ Bundle 'bufexplorer.zip'
 Bundle 'tpope/vim-markdown'
 Bundle 'jtratner/vim-flavored-markdown'
 "}}}
+" {{{ handlebars
+Bundle "mustache/vim-mustache-handlebars"
+" }}}
 " {{{ html/css
 Bundle 'mattn/emmet-vim'
 Bundle 'cakebaker/scss-syntax.vim'
@@ -41,6 +44,3 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'jimmyhchan/dustjs.vim'
 "}}}
-
-" lint thy php! (broken atm)
-
