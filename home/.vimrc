@@ -46,8 +46,16 @@ map  <silent> <LocalLeader>nh :nohls<CR>
 " more natural split opening
 set splitbelow
 set splitright
+
+" make switching between windows more natural
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " Equalize splits after a window resize (should this be in an autocommand group?)
 autocmd VimResized * wincmd =
+
 
 " * indentation
 set shiftround " only tab in multiples of two
@@ -198,7 +206,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	" https://github.com/kien/ctrlp.vim#basic-options
 	let g:ctrlp_working_path_mode = 'a'
 	" custom ignore https://github.com/kien/ctrlp.vim/issues/58
-	let g:ctrlp_custom_ignore = 'node_modules\|DS_store\|git\'
+	let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_store\|git\'
 
   " open multiple files (maximum of 4)
   " (default bindings are <c-o> and <c-z>)
@@ -210,15 +218,20 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 		\ 'AcceptSelection("e")': ['<c-t>'],
 		\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
 		\ }
-    " * Syntastic
-    " On by default, turn it off for html
-    let g:syntastic_mode_map = { 'mode': 'active',
-        \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['html'] }
-    " requires pyflakes (``pip install pyflakes``)
-    let g:syntastic_python_checkers = ['flake8']
-    " Better :sign interface symbols
-    let g:syntastic_error_symbol = '✗'
-    let g:syntastic_warning_symbol = '!'
+  " * Syntastic
+  " On by default, turn it off for html
+  let g:syntastic_mode_map = { 'mode': 'active',
+      \ 'active_filetypes': [],
+      \ 'passive_filetypes': ['html'] }
+  " requires pyflakes (``pip install pyflakes``)
+  let g:syntastic_python_checkers = ['flake8']
+  " Better :sign interface symbols
+  let g:syntastic_error_symbol = '✗'
+  let g:syntastic_warning_symbol = '!'
+
+  " make error coloring less awful
+  hi SyntasticError cterm=NONE ctermfg=green ctermbg=red
+  hi SyntasticWarning cterm=NONE ctermfg=green ctermbg=gray
 """ }}}
+
 
