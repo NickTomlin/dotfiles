@@ -53,6 +53,9 @@ source $ZSH/oh-my-zsh.sh
 EDITOR='vim'  # emacs sucks. J/K. Not really.
 export EDITOR
 
+# Prevents zsh from messing with tmux window title http://superuser.com/a/320316
+DISABLE_AUTO_TITLE=true
+
 ## Autocomplete
 ### @borked Reverse tab in autocomplete http://stackoverflow.com/a/842370/1048479
 # bindkey '^[[Z' reverse-menu-complete
