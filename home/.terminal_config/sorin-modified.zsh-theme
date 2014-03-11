@@ -5,6 +5,10 @@
 #      MODIFIED:  Nick Tomlin (nick.tomlin@gmail.com)
 #       VERSION:  1.0.2
 #    SCREENSHOT:  http://i.imgur.com/aipDQ.png
+#
+#    ** Miscleanous unicode symbols for fun and profit:
+#    source: http://www.utf8-chartable.de/unicode-utf8-table.pl
+#    ࿈ ᎒ ᐵ ࿓  ⬚ ⠮ ࿇ ⚀✪ ✍ ✎ ◆ ♻ ✪ ∆ ☦ ☭ ☢ ♨ ⚛ »)
 # ------------------------------------------------------------------------------
 
 
@@ -13,7 +17,7 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
   local return_status="%{$fg[red]%}%(?..⏎)%{$reset_color%}"
 
   PROMPT='%{$fg[cyan]%}[ %~ ]
-$(git_prompt_info)%(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%} »)%{$reset_color%} '
+$(git_prompt_info)%(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%} ᎒)%{$reset_color%} '
 
   ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[blue]%}git%{$reset_color%}:%{$fg[red]%}"
   ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
