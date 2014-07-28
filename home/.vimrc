@@ -1,5 +1,6 @@
 " unbind all autocommands
 autocmd!
+
 " === Vundle
 " required by vundle
 set nocompatible              " be iMproved
@@ -26,6 +27,9 @@ endif
 map Q <nop>
 " the /g flag on :s substitutions by default
 set gdefault
+" Disable the built in explorer
+let g:loaded_netrw=1
+let g:loaded_netrwPlugin=1
 
 " Autoremove trailing spaces when saving the buffer
 autocmd FileType c,cpp,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -143,6 +147,8 @@ set pastetoggle=<F2>
 " has already been set. Whew. Now say that 5 times in a row.
 au BufRead,BufNewFile *.twig set filetype=jinja
 au BufRead,BufNewFile *.module set filetype=php
+au BufRead,BufNewFile *.md.* set filetype=markdown
+au BufRead,BufNewFile *.pro set syntax=prolog
 " django
 autocmd FileType python set ft=python.django " For SnipMate
 autocmd FileType html set ft=htmldjango.html " For SnipMate
@@ -150,6 +156,8 @@ autocmd FileType html set ft=htmldjango.html " For SnipMate
 au BufRead,BufNewFile *.handlebars set filetype=html
 " ruby
 au BufRead,BufNewFile Guardfile set filetype=ruby
+" Make
+au BufRead,BufNewFile make setlocal noexpandtab
 
 " === Files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
@@ -168,9 +176,13 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
     " cnoremap <C-n> <Down>
     " cnoremap <C-b> <Left>
   """ }}}
+  """ conveience normal methods
+      nmap <leader>k :norm ysabb  :startinsert<CR>
   """ convience insert methods {{{
       " less awkward =>
       imap <C-L> <SPACE>=><SPACE>
+      " less awkward ->
+      imap <C-K> <SPACE>-><SPACE>
   """ }}}
 """ }}}
 
@@ -212,12 +224,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " (default bindings are <c-o> and <c-z>)
   let g:ctrlp_open_multiple_files = '4vjr'
 
-	" open new files in tab
+  " open new files in a split
+  let g:ctrlp_open_new_file = 'v'
+
+	" want to open new files in a tab?
 	" https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
-	let g:ctrlp_prompt_mappings = {
-		\ 'AcceptSelection("e")': ['<c-t>'],
-		\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-		\ }
+
   " * Syntastic
   " On by default, turn it off for html
   let g:syntastic_mode_map = { 'mode': 'active',
@@ -232,6 +244,20 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " make error coloring less awful
   hi SyntasticError cterm=NONE ctermfg=green ctermbg=red
   hi SyntasticWarning cterm=NONE ctermfg=green ctermbg=gray
-""" }}}
 
+  " * Rainbow
+  let g:rainbow_active = 0
+
+  map <leader>rt :RainbowToggle<CR>
+
+  " * Vimux (https://github.com/benmills/vimux)
+  map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
+  map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
+  map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
+  map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
+  map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
+  " @ todo fix these conflicts yo
+  " vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
+  " nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
+""" }}}
 
