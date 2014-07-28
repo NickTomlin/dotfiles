@@ -27,10 +27,23 @@ Bundle "mustache/vim-mustache-handlebars"
 Bundle 'mattn/emmet-vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle "lepture/vim-jinja"
+Bundle "vim-stylus"
 " }}}
-"{{{ Django
+"{{{ Python
+" Django
 Bundle 'robhudson/snipmate_for_django'
 "}}}
+"{{{ Ruby
+Bundle 'vim-ruby/vim-ruby'
+" Rails
+Bundle 'tpope/vim-rails'
+"}}}
+"{{{ Io
+Bundle 'andreimaxim/vim-io'
+"}}}
+" {{{ Scala
+Bundle 'derekwyatt/vim-scala'
+" }}}
 " {{{ snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"

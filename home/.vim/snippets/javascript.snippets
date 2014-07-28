@@ -16,6 +16,14 @@ snippet ita
 	it('${1:description}', function (done) {
 		${0}
 	});
+# requirejs using commonjs syntax boilerplate
+snippet rjsc
+	define(function (require, exports, module) {
+
+		module.exports.${1} = function (${2}) {
+			${0}
+		};
+	});
 # module exports shortcut
 snippet me
 	module.exports${0}
