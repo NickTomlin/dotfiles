@@ -123,12 +123,19 @@ fi
 # --- "Portable" bash aliases
 alias zshrc='$EDITOR ~/.zshrc'
 alias blog='$EDITOR ~/Dropbox/sync/octoblog-drafts'
+alias vimsimple='vim -u ~/.vim/simple-vimrc'
+alias t='tmux'
+alias team='teamocil'
 
 # --- Convenience
 ## Print the current date (for backups, etc)
 nicedate=$(date +%m-%d-%y)
+## Avoid a screen full of vendor junk when using tree
+alias tree="tree -I 'node_modules|vendor'"
 ## Line numbers with cat
 alias catn='cat -n'
+## Open changed files in vim
+alias editchanged='vim `git status --porcelain | sed -ne '\''s/^ M //p'\''`'
 ## got to git root directory
 ## http://stackoverflow.com/a/957978/1048479
 function groot() {
