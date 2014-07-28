@@ -14,6 +14,10 @@
 # 66cccc Aqua
 # 6699cc Blue
 # cc99cc Purple
+#
+# alas, something like this does not work.
+# @todo find out why
+# YELLOW=ffcc66
 
 ## set status bar
 set -g status-bg default
@@ -49,13 +53,13 @@ set -g status-left-length 100
 # set -g status-left-bg green
 # set -g status-left-fg black
 set -g status-left-attr bold
-set -g status-left ''
+set -g status-left '#[fg=#ffcc66,bg=#2d2d2d] #H#[fg=]:#[fg=colour178]#S '
 
 # right side of status bar holds "[host name] (date time)"
 set -g status-right-length 100
 set -g status-right-fg black
 set -g status-right-attr bold
-set -g status-right '#[fg=#ffcc66,bg=#2d2d2d] #H#[fg=]:#[fg=colour178]#S #[fg=#66cccc,bg=#2d2d2d] %y.%m.%d %H:%M '
+set -g status-right '#[fg=#66cccc,bg=#2d2d2d] %y.%m.%d %H:%M '
 
 # make background window look like white tab
 set-window-option -g window-status-bg default
