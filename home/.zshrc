@@ -125,6 +125,7 @@ alias zshrc='$EDITOR ~/.zshrc'
 alias blog='$EDITOR ~/Dropbox/sync/octoblog-drafts'
 alias vimsimple='vim -u ~/.vim/simple-vimrc'
 alias t='tmux'
+alias tat='tmux attach -t'
 alias team='teamocil'
 
 # --- Convenience
