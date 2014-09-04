@@ -17,15 +17,6 @@
 # Iterm: Theme: https://github.com/baskerville/iTerm-2-Color-Themes arthur
 
 ######
-# Helpers
-######
-
-# Check for existence of program
-exists () {
-  hash $1 2>/dev/null
-}
-
-######
 # Zsh Configuration
 ######
 
@@ -198,6 +189,11 @@ scaleCanvas() {
   else
     echo "convert not found, is ImageMagick installed and in your path?"
   fi
+}
+
+# Check for existence of program
+exists () {
+  hash $1 2>/dev/null
 }
 
 # Start a python simple HTTP server. This is superseded, for the most part, by node's static (``npm install -g static``)
