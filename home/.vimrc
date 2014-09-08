@@ -242,8 +242,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   let g:syntastic_warning_symbol = '!'
 
   " make error coloring less awful
-  hi SyntasticError cterm=NONE ctermfg=green ctermbg=red
-  hi SyntasticWarning cterm=NONE ctermfg=green ctermbg=gray
+  hi SyntasticError cterm=bold,underline ctermfg=210 guifg=#f2777a
+  hi SyntasticWarning term=underline cterm=underline ctermfg=81 gui=underline guifg=#80a0ff
 
   " * Rainbow
   let g:rainbow_active = 0
