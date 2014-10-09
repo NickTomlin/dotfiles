@@ -37,6 +37,7 @@ Bundle 'robhudson/snipmate_for_django'
 "}}}
 "{{{ Ruby
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'pgr0ss/vimux-ruby-test'
 " Rails
 Bundle 'tpope/vim-rails'
 "}}}

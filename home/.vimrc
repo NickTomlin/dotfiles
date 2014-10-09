@@ -250,6 +250,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 
   map <leader>rt :RainbowToggle<CR>
 
+  " * Vimux Ruby Test("https://github.com/pgr0ss/vimux-ruby-test")
+  map <silent> <LocalLeader>rf :RunRubyFocusedTest<CR>
+
   " * Vimux (https://github.com/benmills/vimux)
   map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
   map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
