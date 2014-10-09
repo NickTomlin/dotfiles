@@ -60,7 +60,7 @@ alias mkdir='mkdir -pv'
 
 ## History
 ### Histsize
-HISTSIZE=1000
+HISTSIZE=500
 
 ### Remove duplicates
 export HISTCONTROL=erasedups
@@ -229,8 +229,17 @@ alias be="bundle exec"
 # --- NODE
 
 ## NVM
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh" && nvm alias default 0.10; nvm use default;
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+if [[ $(uname -s) == "Darwin" ]]
+  then
+    export NVM_DIR=~/.nvm
+    source $(brew --prefix nvm)/nvm.sh
+  else
+    [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
+fi
+
+# on probation due to possible shell slowness:
+# [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+# nvm alias default 0.10 && nvm use default;
 
 # --- PYTHON
 # @todo manually source virtualenvwrapper instead of using venv burrito (fix python3 incompatibility)
@@ -240,4 +249,4 @@ alias be="bundle exec"
 ######
 
 # Heroku
-[[ -d "/usr/bin/heroku" ]] && export PATH="/usr/local/heroku/bin:$PATH"
+# [[ -d "/usr/bin/heroku" ]] && export PATH="/usr/local/heroku/bin:$PATH"
