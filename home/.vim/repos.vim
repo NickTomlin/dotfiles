@@ -1,69 +1,69 @@
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-repeat'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'L9'
-Bundle 'scrooloose/nerdtree'
-Bundle 'FuzzyFinder'
-Bundle 'scrooloose/syntastic'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'ervandew/supertab'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'mileszs/ack.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'benmills/vimux'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-repeat'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'L9'
+Plugin 'scrooloose/nerdtree'
+Plugin 'FuzzyFinder'
+Plugin 'scrooloose/syntastic'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'ervandew/supertab'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'mileszs/ack.vim'
+Plugin 'bufexplorer.zip'
+Plugin 'benmills/vimux'
 "{{{ markdown
-Bundle 'tpope/vim-markdown'
-Bundle 'jtratner/vim-flavored-markdown'
+Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
 "}}}
 " {{{ handlebars
-Bundle "mustache/vim-mustache-handlebars"
+Plugin 'mustache/vim-mustache-handlebars'
 " }}}
 " {{{ html/css
-Bundle 'mattn/emmet-vim'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle "lepture/vim-jinja"
-Bundle "vim-stylus"
+Plugin 'mattn/emmet-vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'lepture/vim-jinja'
+Plugin 'vim-stylus'
 " }}}
 "{{{ Python
 " Django
-Bundle 'robhudson/snipmate_for_django'
+Plugin 'robhudson/snipmate_for_django'
 "}}}
 "{{{ Ruby
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'pgr0ss/vimux-ruby-test'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'pgr0ss/vimux-ruby-test'
 " Rails
-Bundle 'tpope/vim-rails'
+Plugin 'tpope/vim-rails'
 "}}}
 "{{{ Io
-Bundle 'andreimaxim/vim-io'
+Plugin 'andreimaxim/vim-io'
 "}}}
 " {{{ Scala
-Bundle 'derekwyatt/vim-scala'
+Plugin 'derekwyatt/vim-scala'
 " }}}
 " {{{ Clojure
-Bundle 'tpope/vim-fireplace'
-Bundle 'guns/vim-clojure-static'
-Bundle 'luochen1990/rainbow'
+Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-clojure-static'
+Plugin 'luochen1990/rainbow'
 " }}}
 " {{{ snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/vim-snippets"
-Bundle "garbas/vim-snipmate"
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
 " }}}
-Bundle 'bronson/vim-trailing-whitespace'
+Plugin 'bronson/vim-trailing-whitespace'
 " {{{ javascript / coffee script (T_T)
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'jimmyhchan/dustjs.vim'
-Bundle 'muffs/wap-it'
-"}}}
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'jimmyhchan/dustjs.vim'
+Plugin 'muffs/wap-it'
+" }}}
