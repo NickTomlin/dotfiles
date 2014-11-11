@@ -27,6 +27,9 @@ ZSH_CUSTOM=$HOME/.terminal_config
 # --- Homeschick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
+# --- Z yo
+. "$HOME/z.sh"
+
 # --- PATH
 # prefer user packages to system ones
 export PATH='/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin'
