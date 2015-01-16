@@ -157,6 +157,10 @@ sshkey() {
   fi
 }
 
+# make a directory and cd into it
+# http://theunixgeek.blogspot.com/2009/02/merging-mkdir-and-cd.html
+mcd() { [ -n "$1"  ] && mkdir -p "$1" && cd "$1";  }
+
 # Search Google for terms
 ## http://superuser.com/questions/47192/google-search-from-linux-terminal
 google() {
@@ -244,8 +248,14 @@ fi
 # [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 # nvm alias default 0.10 && nvm use default;
 
+# make it easier to run things in node_modules
+alias npm-exec='env PATH="$(npm bin):$PATH"'
+alias ne='npm-exec'
+
 # --- PYTHON
 # @todo manually source virtualenvwrapper instead of using venv burrito (fix python3 incompatibility)
+# [pyenv](https://github.com/yyuu/pyenv)
+# eval "$(pyenv init -)"
 
 ######
 # PAAS related tools
