@@ -142,6 +142,8 @@ set statusline+=%L        " Total lines
 set mouse=a
 " non insane paste
 set pastetoggle=<F2>
+" Pasting over a selection does not replace the clipboard
+xnoremap <expr> p 'pgv"'.v:register.'y'"'
 
 " ===  Syntax
 " we need to use set filetype instead of setfiletype
