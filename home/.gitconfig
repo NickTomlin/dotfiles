@@ -1,0 +1,21 @@
+[user]
+  name = "Nick Tomlin"
+  email= nick.tomlin@gmail.com
+[color]
+  ui = auto
+[push]
+  default = simple
+[alias]
+  ci = commit
+  co = checkout
+  st = status
+  br = branch
+
+  addall = add -A .
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
+  current = log --pretty=format:'%ad %h %d' --abbrev-commit --date=short -1
+  cur = log --pretty=format:'%ad %h %d' --abbrev-commit --date=short -1
+  staged = diff --staged
+  unstaged = diff
+  pile = stash --include-untracked
