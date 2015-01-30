@@ -62,7 +62,6 @@ nnoremap <C-H> <C-W><C-H>
 " Equalize splits after a window resize (should this be in an autocommand group?)
 autocmd VimResized * wincmd =
 
-
 " * indentation
 set shiftround " only tab in multiples of two
 " keep visual selection when shifting
@@ -196,6 +195,13 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	filetype plugin indent on
   "" * MATCHIT (included in most vims by default, grab it from https://github.com/vim-scripts/matchit.zipc if it is not
   runtime macros/matchit.vim
+
+  "" * ultisnips https://github.com/SirVer/ultisnips
+  let g:UltiSnipsExpandTrigger="<tab>"
+  " i'd really prefer to just tab through all options
+  " working on figuring out how to do that now
+  let g:UltiSnipsJumpForwardTrigger="<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 	"" * NERD_tree
 	autocmd VimEnter * if !argc() | NERDTree | endif
