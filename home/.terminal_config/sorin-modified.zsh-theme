@@ -11,45 +11,70 @@
 #    ࿈ ᎒ ᐵ ࿓  ⬚ ⠮ ࿇ ⚀✪ ✍ ✎ ◆ ♻ ✪ ∆ ☦ ☭ ☢ ♨ ⚛ »
 # ------------------------------------------------------------------------------
 
+### GIT stuffz
+timeout () {
+  perl -e 'use Time::HiRes qw( usleep ualarm gettimeofday tv_interval ); ualarm 100000; exec @ARGV' "$@";
+}
+
+git_untracked_count() {
+  count=`echo $(timeout git ls-files --other --exclude-standard | wc -l)`
+  if [ $count -eq 0 ]; then return; fi
+  echo " %{$fg_bold[yellow]%}?%{$fg_no_bold[black]%}:%{$reset_color$fg[yellow]%}$count%{$reset_color%}"
+}
+
+git_modified_count() {
+  count=`echo $(timeout git ls-files -md | wc -l)`
+  if [ $count -eq 0 ]; then return; fi
+  echo " %{$fg_bold[red]%}M%{$fg_no_bold[black]%}:%{$reset_color$fg[red]%}$count%{$reset_color%}"
+}
+
+git_staged_count() {
+  count=`echo $(timeout git diff-index --cached --name-only HEAD 2>/dev/null | wc -l)`
+  if [ $count -eq 0 ]; then return; fi
+  echo " %{$fg_bold[green]%}S%{$fg_no_bold[black]%}:%{$reset_color$fg[green]%}$count%{$reset_color%}"
+}
+
+git_branch() {
+  branch=$(git symbolic-ref HEAD --quiet 2> /dev/null)
+  if [ -z $branch ]; then
+    echo "%{$fg[yellow]%}$(git rev-parse --short HEAD)%{$reset_color%}"
+  else
+    echo "%{$fg[magenta]%}${branch#refs/heads/}%{$reset_color%}"
+  fi
+}
+
+git_remote_difference() {
+  branch=$(git symbolic-ref HEAD --quiet)
+  if [ -z $branch ]; then return; fi
+
+  remote=$(git remote show)
+  ahead_by=`echo $(git log --oneline $remote/${branch#refs/heads/}..HEAD 2> /dev/null | wc -l)`
+  behind_by=`echo $(git log --oneline HEAD..$remote/${branch#refs/heads/} 2> /dev/null | wc -l)`
+
+  output=""
+  if [ $ahead_by -gt 0 ]; then output="$output%{$fg_bold[white]%}↑%{$reset_color%}$ahead_by"; fi
+  if [ $behind_by -gt 0 ]; then output="$output%{$fg_bold[white]%}↓%{$reset_color%}$behind_by"; fi
+
+  echo $output
+}
+
+in_git_repo() {
+  if [[ -d .git ]]; then
+    echo 0
+  else
+    echo $(git rev-parse --git-dir > /dev/null 2>&1; echo $?)
+  fi
+}
+
+git_prompt_info() {
+  if [[ $(in_git_repo) -gt 0 ]]; then return; fi
+  print "$(git_branch)$(git_remote_difference)$(git_staged_count)$(git_modified_count)$(git_untracked_count)"
+}
 
 if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
-  MODE_INDICATOR="%{$fg_bold[red]%}❮%{$reset_color%}%{$fg[red]%}❮❮%{$reset_color%}"
-  local return_status="%{$fg[red]%}%(?..⏎)%{$reset_color%}"
-
   PROMPT='%{$fg[cyan]%}[%~]
 $(git_prompt_info)%(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%} ᎒)%{$reset_color%} '
-
-  ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}git%{$reset_color%}:%{$fg[magenta]%}"
-  ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-  ZSH_THEME_GIT_PROMPT_DIRTY=""
-  ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-  RPROMPT='${return_status}$(git_prompt_status)%{$reset_color%}'
-
-  ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
-  ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
-  ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
-  ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
-  ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
-  ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 else
-  MODE_INDICATOR="❮❮❮"
-  local return_status="%(?::⏎)"
-
-  PROMPT='%c$(git_prompt_info) %(!.#.❯) ffff'
-
-  ZSH_THEME_GIT_PROMPT_PREFIX=" git:"
-  ZSH_THEME_GIT_PROMPT_SUFFIX=""
-  ZSH_THEME_GIT_PROMPT_DIRTY=""
-  ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-  RPROMPT='${return_status}$(git_prompt_status)'
-
-  ZSH_THEME_GIT_PROMPT_ADDED=" ✚"
-  ZSH_THEME_GIT_PROMPT_MODIFIED=" ✹"
-  ZSH_THEME_GIT_PROMPT_DELETED=" ✖"
-  ZSH_THEME_GIT_PROMPT_RENAMED=" ➜"
-  ZSH_THEME_GIT_PROMPT_UNMERGED=" ═"
-  ZSH_THEME_GIT_PROMPT_UNTRACKED=" ✭"
+  PROMPT='%c$(git_prompt_info) ᎒'
 fi
 
