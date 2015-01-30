@@ -41,7 +41,6 @@ export PATH='/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/
 export ZSH_THEME="sorin-modified" # Sweet git magic
 
 # --- PLUGINS (~/.oh-my-zsh/plugins/*) ---
-plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # --- Shell Options
@@ -122,6 +121,7 @@ alias vimsimple='vim -u ~/.vim/simple-vimrc'
 alias t='tmux'
 alias tat='tmux attach -t'
 alias team='teamocil'
+alias g='git'
 
 # --- Convenience
 ## Print the current date (for backups, etc)
