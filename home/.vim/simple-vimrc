@@ -1,1 +1,4 @@
+" this is an almost vanilla vimrc for testing out things
+" you can load it by passing it into Vim's -u flag:
+" vim -u ~/.vim/simple-vimrc
 set number
