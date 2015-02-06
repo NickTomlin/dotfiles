@@ -220,15 +220,16 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   let g:surround_{char2nr('d')} = "{\r}"
 
 	"" * ctrlp
-	let g:ctrlp_map = '<c-p>'
-	let g:ctrlp_cmd = 'CtrlP'
-    " mirror shared environment setting for local vimrc
-    " not sure if this is the best way to do this
-    nmap <leader>ff :CtrlP<CR>
-	" https://github.com/kien/ctrlp.vim#basic-options
-	let g:ctrlp_working_path_mode = 'a'
-	" custom ignore https://github.com/kien/ctrlp.vim/issues/58
-	let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_store\|git\'
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlP'
+  " mirror shared environment setting for local vimrc
+  " not sure if this is the best way to do this
+  nmap <leader>ff :CtrlP<CR>
+  nnoremap <leader>ft :CtrlPTag<cr>
+  " https://github.com/kien/ctrlp.vim#basic-options
+  let g:ctrlp_working_path_mode = 'a'
+  " custom ignore https://github.com/kien/ctrlp.vim/issues/58
+  let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_store\|git\'
 
   " open multiple files (maximum of 4)
   " (default bindings are <c-o> and <c-z>)
