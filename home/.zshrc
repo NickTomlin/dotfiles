@@ -63,6 +63,8 @@ alias mkdir='mkdir -pv'
 ## History
 ### Histsize
 HISTSIZE=500
+# Ignore certain commands http://stackoverflow.com/questions/4747337/how-can-ignore-more-than-one-commands-from-history
+export HISTIGNORE="&:ls:exit"
 
 ### Remove duplicates
 export HISTCONTROL=erasedups
