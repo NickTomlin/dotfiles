@@ -263,6 +263,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 
   " * Vimux Ruby Test("https://github.com/pgr0ss/vimux-ruby-test")
   map <silent> <LocalLeader>rf :RunRubyFocusedTest<CR>
+  map <silent> <LocalLeader>rb :RunAllRubyTests<CR>
 
   " * Vimux (https://github.com/benmills/vimux)
   map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
