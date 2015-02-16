@@ -1,6 +1,6 @@
 export PATH="/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/share/npm/bin:$PATH"
 # source our aliases file
-source ~/.bash_aliases
+[[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
 # enable colors in terminal
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
