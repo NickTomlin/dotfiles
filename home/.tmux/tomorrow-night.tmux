@@ -53,23 +53,23 @@ set -g status-left-length 100
 # set -g status-left-bg green
 # set -g status-left-fg black
 set -g status-left-attr bold
-set -g status-left '#[fg=#ffcc66,bg=#2d2d2d] #H#[fg=]:#[fg=colour178]#S '
+set -g status-left '#[fg=#cc99cc,bg=#2d2d2d] #H#[fg=]:#[fg=#99cc99]#S '
 
 # right side of status bar holds "[host name] (date time)"
 set -g status-right-length 100
 set -g status-right-fg black
 set -g status-right-attr bold
-set -g status-right '#[fg=#66cccc,bg=#2d2d2d] %y.%m.%d %H:%M '
+set -g status-right '#[fg=#f99157,bg=#2d2d2d] %H:%M |#[fg=#6699cc] %y.%m.%d '
 
 # make background window look like white tab
 set-window-option -g window-status-bg default
 set-window-option -g window-status-fg white
 set-window-option -g window-status-attr none
-set-window-option -g window-status-format '#[fg=#999999,bg=colour235] #I #[fg=white,bg=colour236] #W #[default]'
+set-window-option -g window-status-format '#[fg=#6699cc,bg=colour235] #I #[fg=#999999,bg=#2d2d2d] #W #[default]'
 
 # make foreground window look like bold yellow foreground tab
 set-window-option -g window-status-current-attr none
-set-window-option -g window-status-current-format '#[fg=#ffcc66,bg=#2d2d2d] #I #[fg=brightwhite,bg=colour238] #W #[default]'
+set-window-option -g window-status-current-format '#[fg=#f99157,bg=#2d2d2d] #I #[fg=#cccccc,bg=#393939] #W #[default]'
 
 # active terminal yellow border, non-active white
 set -g pane-border-bg default
