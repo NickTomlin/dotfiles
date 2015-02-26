@@ -26,12 +26,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 " {{{ html/css
 Plugin 'mattn/emmet-vim'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'lepture/vim-jinja'
 " }}}
-"{{{ Python
-" Django
-Plugin 'robhudson/snipmate_for_django'
-"}}}
 "{{{ Ruby
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'pgr0ss/vimux-ruby-test'
