@@ -235,8 +235,15 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " (default bindings are <c-o> and <c-z>)
   let g:ctrlp_open_multiple_files = '4vjr'
 
-  " open new files in a split
-  let g:ctrlp_open_new_file = 'v'
+  " replace current file with new file
+  " use ctrl + v or ctrl + t in the quick list
+  " if you want to circumvent this
+  let g:ctrlp_open_new_file = 'r'
+
+  " allow ctrlp to replace nerdtree
+  " https://github.com/mhinz/vim-startify/issues/6#issuecomment-21863572
+  " (normally ctrlp does not replace the window of anotother plugin)
+  let g:ctrlp_reuse_window  = 'nerdtree'
 
 	" want to open new files in a tab?
 	" https://github.com/kien/ctrlp.vim/issues/160#issuecomment-4527442
