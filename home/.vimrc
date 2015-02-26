@@ -206,7 +206,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 	"" * NERD_tree
-	autocmd VimEnter * if !argc() | NERDTree | endif
 	" I come from the sublime text world, so this makes a lot of sense to me
 	map <leader>nt :NERDTreeToggle<CR>
   map <silent> <LocalLeader>nf :NERDTreeFind<CR>

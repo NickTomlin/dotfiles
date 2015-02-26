@@ -15,6 +15,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'bufexplorer.zip'
 Plugin 'benmills/vimux'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'tommcdo/vim-exchange'
 "{{{ markdown
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
