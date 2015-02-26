@@ -51,6 +51,5 @@ Plugin 'honza/vim-snippets'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'jimmyhchan/dustjs.vim'
 Plugin 'muffs/wap-it'
 " }}}
