@@ -112,6 +112,8 @@ set background=dark
 set title
 set scrolloff=3 " lines above/below cursor
 set vb t_vb= " disable beep and flashing
+hi Search ctermfg=221 guifg=#ffcc66 term=reverse ctermbg=238 guibg=#515151
+hi IncSearch ctermfg=221 guifg=#ffcc66 term=standout ctermbg=238 guibg=#515151
 " commenting out to troubleshoot slowness
 " set cursorline " I get lost sometimes T_T
 " set colorcolumn=80 " color long lines
