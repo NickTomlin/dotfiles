@@ -303,6 +303,7 @@ alias ne='npm-exec'
 
 # --- Homeschick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+alias h="homeshick"
 
 # --- Z yo
 . "$HOME/z.sh"
