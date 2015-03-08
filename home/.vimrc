@@ -32,6 +32,8 @@ set gdefault
 " Disable the built in explorer
 let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
+" I don't spell good
+set spell
 
 " Autoremove trailing spaces when saving the buffer
 autocmd FileType c,cpp,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -114,6 +116,12 @@ set scrolloff=3 " lines above/below cursor
 set vb t_vb= " disable beep and flashing
 hi Search ctermfg=221 guifg=#ffcc66 term=reverse ctermbg=238 guibg=#515151
 hi IncSearch ctermfg=221 guifg=#ffcc66 term=standout ctermbg=238 guibg=#515151
+hi SpellBad cterm=bold,underline ctermfg=251 ctermbg=bg
+hi SpellCap ctermfg=114 ctermbg=bg
+" zero this out since I don't find it to be helpful
+hi SpellRare ctermfg=fg ctermbg=bg
+" @todo: revisit this
+hi SpellLocal ctermfg=fg ctermbg=bg
 " commenting out to troubleshoot slowness
 " set cursorline " I get lost sometimes T_T
 " set colorcolumn=80 " color long lines
