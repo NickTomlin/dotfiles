@@ -16,37 +16,13 @@
 # Font: http://damieng.com/blog/2007/11/14/droid-font-family-courtesy-of-google-ascender
 # Iterm: Theme: https://github.com/baskerville/iTerm-2-Color-Themes arthur
 
-######
-# Zsh Configuration
-######
-
-ZSH=$HOME/.oh-my-zsh
-# set custom path for personal themes/plugins
-ZSH_CUSTOM=$HOME/.terminal_config
-
-# --- Homeschick
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-
-# --- Z yo
-. "$HOME/z.sh"
-
 # --- PATH
 # prefer user packages to system ones
+# @todo trim this down?
 export PATH='/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin'
-# local config / aliases
-[[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
-
-# --- Themeing
-# found in ~/.terminal_config/sorin-modified.zsh-theme
-export ZSH_THEME="sorin-modified" # Sweet git magic
-
-# --- PLUGINS (~/.oh-my-zsh/plugins/*) ---
-source $ZSH/oh-my-zsh.sh
 
 # --- Shell Options
-## set editor
-### @todo consider switching back to ST2?
-EDITOR='vim'  # emacs sucks. J/K. Not really.
+EDITOR='vim' # emacs sucks. J/K. Not really.
 export EDITOR
 
 # Prevents zsh from messing with tmux window title http://superuser.com/a/320316
@@ -55,27 +31,6 @@ DISABLE_AUTO_TITLE=true
 ## Autocomplete
 ### @borked Reverse tab in autocomplete http://stackoverflow.com/a/842370/1048479
 # bindkey '^[[Z' reverse-menu-complete
-
-## Files
-### have mkdir create parent directories
-alias mkdir='mkdir -pv'
-
-## History
-### Histsize
-HISTSIZE=500
-# Ignore certain commands http://stackoverflow.com/questions/4747337/how-can-ignore-more-than-one-commands-from-history
-export HISTIGNORE="&:ls:exit"
-
-### Remove duplicates
-export HISTCONTROL=erasedups
-### Timestamps with history entries
-#@BORKED export HISTTIMEFORMAT="%F %T "
-
-## Default `cd` to pushd/popd
-setopt autopushd
-
-## Display stack number next to directory listing
-alias dirs='dirs -v'
 
 ## VI Mode ^^
 set -o vi
@@ -97,10 +52,53 @@ bindkey '^j' vi-cmd-mode
 # Make sure to fix the horribly slow git completion with https://github.com/bobthecow/git-flow-completion/wiki/Update-Zsh-git-completion-module
 # @consider https://github.com/webflo/drush_zsh_completion
 
+## Default `cd` to pushd/popd
+setopt autopushd
+
+# Smart quote urls
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+## pager
+export PAGER="less"
+export LESS="-R"
+export LC_CTYPE=$LANG
+
+## History
+## Command history configuration
+if [ -z "$HISTFILE" ]; then
+    HISTFILE=$HOME/.zsh_history
+fi
+HISTSIZE=500
+SAVEHIST=1000
+
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history # share command history data
+
+# Ignore certain commands http://stackoverflow.com/questions/4747337/how-can-ignore-more-than-one-commands-from-history
+export HISTIGNORE="&:ls:exit"
+
+### Remove duplicates
+export HISTCONTROL=erasedups
+
+### Timestamps with history entries
+#@BORKED export HISTTIMEFORMAT="%F %T "
+
 # --- OS
+setopt auto_cd
+setopt multios
+setopt cdablevarS
 
 if [[ $(uname -s) == "Darwin" ]]
   then
+    autoload colors; colors;
+    export LSCOLORS="Gxfxcxdxbxegedabagacad"
+    alias ls='ls -G'
     # @todo Use MacVim instead of Vim (for system keyboard stuff, etc)
     # Should probably check if this exists before setting, but that'll come later
     # alias vim=/usr/local/Cellar/macvim/7.3-65/MacVim.app/Contents/MacOS/vim
@@ -115,6 +113,33 @@ fi
 ######
 # ALIASES
 ######
+
+# --- buitins
+## Display stack number next to directory listing
+alias dirs='dirs -v'
+
+# mkdir
+## have mkdir create parent directories
+alias mkdir='mkdir -pv'
+
+# cd
+alias cd..='cd ..'
+alias cd...='cd ../..'
+alias cd....='cd ../../..'
+alias cd.....='cd ../../../..'
+alias cd/='cd /'
+
+# ls niceities
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# history
+alias history='fc -l 1'
+
+# grep
+alias grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
 
 # --- "Portable" bash aliases
 alias zshrc='$EDITOR ~/.zshrc'
@@ -241,7 +266,7 @@ alias be="bundle exec"
 if [[ $(uname -s) == "Darwin" ]]
   then
     export NVM_DIR=~/.nvm
-    source $(brew --prefix nvm)/nvm.sh
+    [[ -s $(brew --prefix nvm)/nvm.sh ]] && source $(brew --prefix nvm)/nvm.sh
   else
     [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 fi
@@ -265,3 +290,24 @@ alias ne='npm-exec'
 
 # Heroku
 # [[ -d "/usr/bin/heroku" ]] && export PATH="/usr/local/heroku/bin:$PATH"
+
+######
+# Kick off the pretty stuff
+######
+
+# --- Homeschick
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+
+# --- Z yo
+. "$HOME/z.sh"
+
+# local config / aliases
+[[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
+
+# --- Themeing
+# pretty colors -- REQUIRED for spectrum support
+setopt prompt_subst
+# shorthand for colors
+source ~/.terminal_config/spectrum.zsh
+
+source ~/.terminal_config/sorin-modified.zsh-theme
