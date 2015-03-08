@@ -29,6 +29,12 @@ export EDITOR
 DISABLE_AUTO_TITLE=true
 
 ## Autocomplete
+autoload -U compinit
+compinit
+
+autoload -U select-word-style
+select-word-style bash
+
 ### @borked Reverse tab in autocomplete http://stackoverflow.com/a/842370/1048479
 # bindkey '^[[Z' reverse-menu-complete
 
