@@ -19,7 +19,7 @@
 # --- PATH
 # prefer user packages to system ones
 # @todo trim this down?
-export PATH='/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin'
+export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin'
 
 # --- Shell Options
 EDITOR='vim' # emacs sucks. J/K. Not really.
