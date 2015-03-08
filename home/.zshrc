@@ -22,6 +22,7 @@
 export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin'
 
 # --- Shell Options
+# Make sure to fix the horribly slow git completion with https://github.com/bobthecow/git-flow-completion/wiki/Update-Zsh-git-completion-module
 EDITOR='vim' # emacs sucks. J/K. Not really.
 export EDITOR
 
@@ -45,7 +46,6 @@ set -o vi
 autoload -U edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
-# @borked using `subl` (works with EDITOR set to 'vim' though!)
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
@@ -54,9 +54,6 @@ bindkey "^R" history-incremental-search-backward
 
 #### quick-switch to command mode (http://superuser.com/a/353127/146376)
 bindkey '^j' vi-cmd-mode
-
-# Make sure to fix the horribly slow git completion with https://github.com/bobthecow/git-flow-completion/wiki/Update-Zsh-git-completion-module
-# @consider https://github.com/webflo/drush_zsh_completion
 
 ## Default `cd` to pushd/popd
 setopt autopushd
