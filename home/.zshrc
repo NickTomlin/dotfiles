@@ -177,6 +177,7 @@ source ~/.terminal_config/functions.zsh
 ## RBENV
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+alias rh="rbenv rehash"
 alias be="bundle exec"
 
 # --- NODE
