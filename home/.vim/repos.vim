@@ -43,10 +43,12 @@ Plugin 'luochen1990/rainbow'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " }}}
-" {{{ javascript / coffee script (T_T)
+" {{{ javascript / compile to js(T_T)
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'muffs/wap-it'
+" ---
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'leafgarland/typescript-vim'
 " }}}
 Plugin 'vim-scripts/SyntaxRange'
