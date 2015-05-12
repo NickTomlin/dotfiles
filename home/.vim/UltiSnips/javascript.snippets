@@ -1,0 +1,78 @@
+priority 10
+
+snippet strict
+'use strict';
+${0}
+endsnippet
+
+snippet be
+beforeEach(function () {
+		${0}
+		});
+endsnippet
+
+snippet describe
+describe('${1:description}', function () {
+		${0}
+		});
+snippet it
+it('${1:description}', function () {
+		${0}
+		});
+endsnippet
+
+# async describe
+snippet describea
+describe('${1:description}', function (done) {
+		${0}
+		});
+endsnippet
+
+# async it
+snippet ita
+it('${1:description}', function (done) {
+		${0}
+		});
+endsnippet
+
+# for modules with a name that is the same
+snippet re
+var ${1} = require('$1');${0}
+endsnippet
+
+# for more complicated requires
+snippet req
+var ${1} = require('${2}')${3};${0}
+endsnippet
+
+# requirejs using commonjs syntax boilerplate
+snippet rjsc
+define(function (require, exports, module) {
+		module.exports.${1} = function (${2}) {
+			${0}
+		};
+});
+# module exports shortcut
+endsnippet
+
+snippet me
+module.exports${0}
+endsnippet
+
+snippet mee
+module.exports = ${0}
+endsnippet
+
+# tweaked for better anon function
+snippet fn
+function ${1}(${2}) {
+	${0}
+}
+endsnippet
+
+snippet afn
+function(${1}) {
+	${0}
+}
+endsnippet
+# vim:ft=snippets:
