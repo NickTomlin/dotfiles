@@ -66,6 +66,17 @@ in_git_repo() {
   fi
 }
 
+job_info() {
+  JOB_COUNT="$(jobs | wc -l | xargs)" # xargs as poor man's trim http://stackoverflow.com/a/12973694
+  if [ "$JOB_COUNT" = "0" ]
+  then
+    printf ''
+  else
+    printf ' (%s)' "$JOB_COUNT"
+  fi
+}
+
+
 git_prompt_info() {
   if [[ $(in_git_repo) -gt 0 ]]; then return; fi
   print "$(git_branch)$(git_remote_difference)$(git_staged_count)$(git_modified_count)$(git_untracked_count)"
@@ -73,7 +84,7 @@ git_prompt_info() {
 
 if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
   PROMPT='%{$fg[cyan]%}[%~]
-$(git_prompt_info)%(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%} ᎒)%{$reset_color%} '
+$(git_prompt_info)%(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%} ᎒)%{$fg_bold[blue]%}$(job_info) %{$reset_color%}'
 else
   PROMPT='%c$(git_prompt_info) ᎒'
 fi
