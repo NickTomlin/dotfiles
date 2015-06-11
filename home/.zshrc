@@ -40,7 +40,8 @@ select-word-style bash
 # bindkey '^[[Z' reverse-menu-complete
 
 ## VI Mode ^^
-set -o vi
+# set -o vi
+set -o emacs
 
 ### Edit command line (http://nuclearsquid.com/writings/edit-long-commands/)
 autoload -U edit-command-line
