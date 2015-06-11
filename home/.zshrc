@@ -85,7 +85,7 @@ setopt inc_append_history
 setopt share_history # share command history data
 
 # Ignore certain commands http://stackoverflow.com/questions/4747337/how-can-ignore-more-than-one-commands-from-history
-export HISTIGNORE="&:ls:exit"
+export HISTIGNORE="&:ls:exit:ll:l:fg"
 
 ### Remove duplicates
 export HISTCONTROL=erasedups
