@@ -188,7 +188,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
       " less awkward =>
       imap <C-L> <SPACE>=><SPACE>
       " less awkward ->
-      imap <C-K> <SPACE>-><SPACE>
+      imap <C-J> <SPACE>-><SPACE>
+      " less awkward () =>
+      imap <C-K> () =><SPACE>
   """ }}}
 """ }}}
 
