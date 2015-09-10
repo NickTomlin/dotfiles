@@ -298,3 +298,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " * wap it
   :nmap <LocalLeader>wi :call WapIt()<CR>
   :nmap <LocalLeader>wd :call WapDescribe()<CR>
+
+" save vimrc after writing courtesy of VimCasts
+" http://vimcasts.org/episodes/updating-your-vimrc-file-on-the-fly/
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
