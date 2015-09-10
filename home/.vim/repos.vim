@@ -1,54 +1,56 @@
+call plug#begin('~/.vim/plugged')
 " let Vundle manage Vundle
 " required!
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'kien/ctrlp.vim'
-Plugin 'L9'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'bufexplorer.zip'
-Plugin 'benmills/vimux'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'tommcdo/vim-exchange'
+Plug 'itchyny/lightline.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'gmarik/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'kien/ctrlp.vim'
+Plug 'L9'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'bufexplorer.zip'
+Plug 'benmills/vimux'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'tommcdo/vim-exchange'
 "{{{ markdown
-Plugin 'tpope/vim-markdown'
-Plugin 'jtratner/vim-flavored-markdown'
+Plug 'gabrielelana/vim-markdown'
+" Plug 'godlygeek/tabular'
+" Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/goyo.vim'
 "}}}
-" {{{ handlebars
-Plugin 'mustache/vim-mustache-handlebars'
-" }}}
 " {{{ html/css
-Plugin 'mattn/emmet-vim'
-Plugin 'cakebaker/scss-syntax.vim'
+Plug 'mattn/emmet-vim'
+Plug 'cakebaker/scss-syntax.vim'
 " }}}
 "{{{ Ruby
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'pgr0ss/vimux-ruby-test'
+Plug 'vim-ruby/vim-ruby'
+Plug 'pgr0ss/vimux-ruby-test'
 " Rails
-Plugin 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 "}}}
-" {{{ Clojure
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-clojure-static'
-Plugin 'luochen1990/rainbow'
+" {{{ Clojure (saving this for later)
+" Plug 'tpope/vim-fireplace'
+" Plug 'guns/vim-clojure-static'
+" Plug 'luochen1990/rainbow'
 " }}}
 " {{{ snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " }}}
 " {{{ javascript / compile to js(T_T)
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'muffs/wap-it'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'muffs/wap-it'
 " ---
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'leafgarland/typescript-vim'
+Plug 'kchmck/vim-coffee-script'
 " }}}
-Plugin 'vim-scripts/SyntaxRange'
+Plug 'vim-scripts/SyntaxRange'
+call plug#end()
