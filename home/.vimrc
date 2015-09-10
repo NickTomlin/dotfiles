@@ -287,6 +287,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
   map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
   map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
+
+  map <silent> <LocalLeader>ds :call VimuxRunCommand('clear; grep -E "^ *describe[ \( ]\|^ *context[ \( ]\|^ *it[ \( ]" ' . bufname("%"))<CR>
+
   " @ todo fix these conflicts yo
   " vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
   " nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
