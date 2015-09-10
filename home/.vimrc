@@ -265,6 +265,11 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   hi SyntasticError cterm=bold,underline ctermfg=210 guifg=#f2777a
   hi SyntasticWarning term=underline cterm=underline ctermfg=81 gui=underline guifg=#80a0ff
 
+  " * lightline
+  let g:lightline = {
+        \ 'colorscheme': 'Tomorrow',
+        \ }
+
   " * Rainbow
   let g:rainbow_active = 0
 
