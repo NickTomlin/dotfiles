@@ -101,7 +101,7 @@ set wildmenu " nice, zsh-like completion for ex commands
 " }}}
 
 " === Looks
-colorscheme  base16-tomorrow
+colorscheme base16-tomorrow
 let base16colorspace=256
 set background=dark
 set title
@@ -262,6 +262,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " Better :sign interface symbols
   let g:syntastic_error_symbol = '✗'
   let g:syntastic_warning_symbol = '!'
+  " consider http://stackoverflow.com/a/28577965/1048479
+  " autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['jshint']
 
   " make error coloring less awful
   hi SyntasticError cterm=bold,underline ctermfg=210 guifg=#f2777a
@@ -294,7 +296,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
   " nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
 """ }}}
-
   " * wap it
   :nmap <LocalLeader>wi :call WapIt()<CR>
   :nmap <LocalLeader>wd :call WapDescribe()<CR>
