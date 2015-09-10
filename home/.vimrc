@@ -295,3 +295,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
 """ }}}
 
+  " * wap it
+  :nmap <LocalLeader>wi :call WapIt()<CR>
+  :nmap <LocalLeader>wd :call WapDescribe()<CR>
