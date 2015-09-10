@@ -45,6 +45,10 @@ set -g message-fg "#000000"
 set -g message-command-bg "#8abeb7"
 set -g message-command-fg "#000000"
 
+# message bar or "prompt"
+set -g message-bg "#2d2d2d"
+set -g message-fg "#cc99cc"
+
 set -g mode-bg "#8abeb7"
 set -g mode-fg "#000000"
 
