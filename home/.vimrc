@@ -101,7 +101,8 @@ set wildmenu " nice, zsh-like completion for ex commands
 " }}}
 
 " === Looks
-colorscheme Tomorrow-Night-Eighties
+colorscheme  base16-tomorrow
+let base16colorspace=256
 set background=dark
 set title
 set scrolloff=3 " lines above/below cursor
