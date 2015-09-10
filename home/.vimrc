@@ -1,18 +1,10 @@
 " unbind all autocommands
 autocmd!
 
-" === Vundle
-" required by vundle
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Grab Vundle Bundles
 source ~/.vim/repos.vim
-
-call vundle#end()            " required
 
 " ===  Basics
 syntax on
