@@ -12,7 +12,7 @@
   br = branch
   cv = commit -v
 
-  redo = commit --amend -CHEAD
+  redo = commit --amend --no-edit
   addall = add -A .
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
@@ -20,4 +20,10 @@
   cur = log --pretty=format:'%ad %h %d' --abbrev-commit --date=short -1
   staged = diff --staged
   unstaged = diff
+  sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i.bak -e
   pile = stash --include-untracked
+
+  # enterprise aliases for 10x dev
+  hadouken = !"git push -f && echo 'つಠ益ಠ༽つ ─=≡ΣO))'"
+  whoopsie = !git add -u && git redo
+  burninate = git reset HEAD --hard
