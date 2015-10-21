@@ -1,9 +1,6 @@
 " unbind all autocommands
 autocmd!
 
-set nocompatible              " be iMproved
-filetype off                  " required!
-
 source ~/.vim/repos.vim
 
 " ===  Basics
