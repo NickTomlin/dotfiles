@@ -148,6 +148,7 @@ alias grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
 # --- "Portable" bash aliases
 alias zshrc='$EDITOR ~/.zshrc'
 alias blog='$EDITOR ~/Dropbox/sync/octoblog-drafts'
+alias poetry='$EDITOR ~/Dropbox/sync/poetry.md'
 alias present='$EDITOR ~/Dropbox/sync/presentations/prep'
 alias vimsimple='vim -u ~/.vim/simple-vimrc'
 alias t='tmux'
