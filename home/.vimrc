@@ -274,6 +274,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   let g:syntastic_warning_symbol = '!'
   " consider http://stackoverflow.com/a/28577965/1048479
   " autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['jshint']
+  let g:syntastic_javascript_checkers = ['eslint']
 
   " make error coloring less awful
   hi SyntasticError cterm=bold,underline ctermfg=210 guifg=#f2777a
