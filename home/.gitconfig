@@ -26,4 +26,4 @@
   # enterprise aliases for 10x dev
   hadouken = !"git push -f && echo 'つಠ益ಠ༽つ ─=≡ΣO))'"
   whoopsie = !git add -u && git redo
-  burninate = git reset HEAD --hard
+  burninate = !git reset HEAD --hard
