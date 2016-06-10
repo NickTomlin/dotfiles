@@ -194,6 +194,14 @@ if [[ $(uname -s) == "Darwin" ]]
     [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 fi
 
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+
 # on probation due to possible shell slowness:
 # [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 # nvm alias default 0.10 && nvm use default;
@@ -213,6 +221,11 @@ alias ne='npm-exec'
 
 # Heroku
 # [[ -d "/usr/bin/heroku" ]] && export PATH="/usr/local/heroku/bin:$PATH"
+
+# --- C
+function mkrun () {
+ make $1 && ./$1 "${@:2}"
+}
 
 ######
 # Kick off the pretty stuff
