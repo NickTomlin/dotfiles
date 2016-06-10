@@ -3,13 +3,14 @@ call plug#begin('~/.vim/plugged')
 " required!
 Plug 'itchyny/lightline.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'gmarik/Vundle.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'L9'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -21,21 +22,25 @@ Plug 'benmills/vimux'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tommcdo/vim-exchange'
 "{{{ markdown
-Plug 'gabrielelana/vim-markdown'
 " Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/goyo.vim'
 "}}}
 " {{{ html/css
 Plug 'mattn/emmet-vim'
-Plug 'cakebaker/scss-syntax.vim'
 " }}}
 "{{{ Ruby
 Plug 'vim-ruby/vim-ruby'
 Plug 'pgr0ss/vimux-ruby-test'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'tpope/vim-bundler'
 " Rails
 Plug 'tpope/vim-rails'
 "}}}
+" Rust {{{
+Plug 'rust-lang/rust.vim'
+" }}}
 " {{{ Clojure (saving this for later)
 " Plug 'tpope/vim-fireplace'
 " Plug 'guns/vim-clojure-static'
@@ -46,11 +51,12 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " }}}
 " {{{ javascript / compile to js(T_T)
-Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'muffs/wap-it'
+
+Plug 'nicktomlin/wap-it'
 " ---
 Plug 'kchmck/vim-coffee-script'
 " }}}
 Plug 'vim-scripts/SyntaxRange'
+" All the syntax highlighting
+Plug 'sheerun/vim-polyglot'
 call plug#end()
