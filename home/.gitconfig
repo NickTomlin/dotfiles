@@ -20,10 +20,14 @@
   cur = log --pretty=format:'%ad %h %d' --abbrev-commit --date=short -1
   staged = diff --staged
   unstaged = diff
-  sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i.bak -e
+  # Blargh! http://stackoverflow.com/a/23584470
+  sed = ! git grep -z --full-name -l '.' | LC_ALL=C xargs -0 sed -i.bak
   pile = stash --include-untracked
+  up = !git fetch && git rebase --autostash FETCH_HEAD
 
   # enterprise aliases for 10x dev
   hadouken = !"git push -f && echo 'つಠ益ಠ༽つ ─=≡ΣO))'"
   whoopsie = !git add -u && git redo
   burninate = !git reset HEAD --hard
+[core]
+	excludesfile = /Users/ntomlin/.gitignore_global
