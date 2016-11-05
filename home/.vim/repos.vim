@@ -2,9 +2,9 @@ call plug#begin('~/.vim/plugged')
 " let Vundle manage Vundle
 " required!
 Plug 'itchyny/lightline.vim'
+Plug 'mhartington/oceanic-next'
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'gmarik/Vundle.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
@@ -21,6 +21,9 @@ Plug 'bufexplorer.zip'
 Plug 'benmills/vimux'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tommcdo/vim-exchange'
+"{{{ PHP T_T
+Plug 'lumiliet/vim-twig'
+"}}}
 "{{{ markdown
 " Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
