@@ -4,11 +4,20 @@ autocmd!
 source ~/.vim/repos.vim
 
 " ===  Basics
-syntax on
-set t_Co=256 " 256 colors
+syntax enable
 set number
 scriptencoding utf-8
-set ttyfast " for faster redraws etc
+
+" === Looks
+let g:solarized_bold = 1
+let g:solarized_underline = 1
+let g:solarized_italic = 1
+let g:solarized_contrast = "high"
+let g:solarized_visibility= "high"
+let g:solarized_termcolors=256
+colorscheme solarized
+set background=dark
+" set ttyfast " for faster redraws etc
 " share system clipboard on osx
 " but not in tmux!
 if $TMUX == ''
@@ -97,36 +106,33 @@ set noswapfile
 set wildmenu " nice, zsh-like completion for ex commands
 " }}}
 
-" === Looks
-colorscheme base16-tomorrow
-let base16colorspace=256
-set background=dark
+
 set title
 set scrolloff=3 " lines above/below cursor
 set vb t_vb= " disable beep and flashing
-hi Search ctermfg=221 guifg=#ffcc66 term=reverse ctermbg=238 guibg=#515151
-hi IncSearch ctermfg=221 guifg=#ffcc66 term=standout ctermbg=238 guibg=#515151
-hi SpellBad cterm=bold,underline ctermfg=251 ctermbg=bg
-hi SpellCap ctermfg=114 ctermbg=bg
-" zero this out since I don't find it to be helpful
-hi SpellRare ctermfg=fg ctermbg=bg
-" @todo: revisit this
-hi SpellLocal ctermfg=fg ctermbg=bg
+" hi Search ctermfg=221 guifg=#ffcc66 term=reverse ctermbg=238 guibg=#515151
+" hi IncSearch ctermfg=221 guifg=#ffcc66 term=standout ctermbg=238 guibg=#515151
+" hi SpellBad cterm=bold,underline ctermfg=251 ctermbg=bg
+" hi SpellCap ctermfg=114 ctermbg=bg
+" " zero this out since I don't find it to be helpful
+" hi SpellRare ctermfg=fg ctermbg=bg
+" " @todo: revisit this
+" hi SpellLocal ctermfg=fg ctermbg=bg
 " commenting out to troubleshoot slowness
 " set cursorline " I get lost sometimes T_T
 " set colorcolumn=80 " color long lines
 
 set laststatus=2
 " statusline stolen from http://stackoverflow.com/a/5380230/1048479
-set statusline=\%{fugitive#statusline()} " git status via fugitive
-set statusline+=\:\       " Separator
-set statusline+=%f        " Path to the file
-set statusline+=%=        " Switch to the right side
-set statusline+=%3*%y%*                "file type
-set statusline+=%1*%4v\ %* "virtual column number
-set statusline+=%l        " Current line
-set statusline+=/         " Separator
-set statusline+=%L        " Total lines
+" set statusline=\%{fugitive#statusline()} " git status via fugitive
+" set statusline+=\:\       " Separator
+" set statusline+=%f        " Path to the file
+" set statusline+=%=        " Switch to the right side
+" set statusline+=%3*%y%*                "file type
+" set statusline+=%1*%4v\ %* "virtual column number
+" set statusline+=%l        " Current line
+" set statusline+=/         " Separator
+" set statusline+=%L        " Total lines
 
 "set statusline=
 "set statusline +=%1*\ %n\ %*            "buffer number
@@ -138,7 +144,7 @@ set statusline+=%L        " Total lines
 
 " === Input
 " don't copy numbers with mouse
-set mouse=a
+set mouse=
 " non insane paste
 set pastetoggle=<F2>
 " Pasting over a selection does not replace the clipboard
@@ -214,7 +220,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 	map <leader>c <c-_><c-_>
 
   "" * vim-trailing-whitespace"
-  map <leader>fws :FixWhitespace<CR>
+  map <leader>ws :FixWhitespace<CR>
 
   "" * surround
   " compatability with jimmychan/dustjs.vim
@@ -272,18 +278,39 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " Better :sign interface symbols
   let g:syntastic_error_symbol = '✗'
   let g:syntastic_warning_symbol = '!'
-  " consider http://stackoverflow.com/a/28577965/1048479
-  " autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['jshint']
-  let g:syntastic_javascript_checkers = ['eslint']
+
+  " http://stackoverflow.com/a/28577965/1048479
+  autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['standard']
 
   " make error coloring less awful
-  hi SyntasticError cterm=bold,underline ctermfg=210 guifg=#f2777a
-  hi SyntasticWarning term=underline cterm=underline ctermfg=81 gui=underline guifg=#80a0ff
+  " hi SyntasticError cterm=bold,underline ctermfg=210 guifg=#f2777a
+  " hi SyntasticWarning term=underline cterm=underline ctermfg=81 gui=underline guifg=#80a0ff
+  let b:syntastic_javascript_eslint_exec = 'ne eslint'
+  let b:syntastic_javascript_standard_exec = 'ne standard'
 
   " * lightline
   let g:lightline = {
-        \ 'colorscheme': 'Tomorrow',
-        \ }
+        \ 'theme': 'solarized-dark',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste'  ],
+        \           [ 'fugitive', 'filename', 'modified'  ] ]
+        \ },
+        \ 'component_function': {
+        \    'filename': 'LightLineFilename'
+        \  },
+        \ 'component': {
+        \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+        \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+        \ },
+        \ 'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}',
+        \ 'component_visible_condition': {
+        \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+        \ },
+  \ }
+  function! LightLineFilename()
+    return expand('%')
+  endfunction
 
   " * Rainbow
   let g:rainbow_active = 0
@@ -293,6 +320,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " * Vimux Ruby Test("https://github.com/pgr0ss/vimux-ruby-test")
   map <silent> <LocalLeader>rf :RunRubyFocusedTest<CR>
   map <silent> <LocalLeader>rb :RunAllRubyTests<CR>
+  map <silent> <LocalLeader>rc :RunRubyFocusedContext<CR>
 
   " * Vimux (https://github.com/benmills/vimux)
   map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
@@ -307,9 +335,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
   " vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
   " nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
 """ }}}
-  " * wap it
-  :nmap <LocalLeader>wi :call WapIt()<CR>
-  :nmap <LocalLeader>wd :call WapDescribe()<CR>
 
 " save vimrc after writing courtesy of VimCasts
 " http://vimcasts.org/episodes/updating-your-vimrc-file-on-the-fly/
