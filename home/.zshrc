@@ -38,9 +38,6 @@ select-word-style bash
 
 ### @borked Reverse tab in autocomplete http://stackoverflow.com/a/842370/1048479
 # bindkey '^[[Z' reverse-menu-complete
-
-## VI Mode ^^
-# set -o vi
 set -o emacs
 
 ### Edit command line (http://nuclearsquid.com/writings/edit-long-commands/)
@@ -143,7 +140,7 @@ alias la='ls -lAh'
 alias history='fc -l 1'
 
 # grep
-alias grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
+# alias grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
 
 # --- "Portable" bash aliases
 alias zshrc='$EDITOR ~/.zshrc'
@@ -158,7 +155,9 @@ alias g='git'
 
 # --- Convenience
 ## Print the current date (for backups, etc)
-nicedate=$(date +%m-%d-%y)
+nicedate () {
+  date +%m-%d-%y
+}
 ## Avoid a screen full of vendor junk when using tree
 alias tree="tree -I 'node_modules|vendor'"
 ## Line numbers with cat
@@ -246,5 +245,9 @@ alias h="homeshick"
 setopt prompt_subst
 # shorthand for colors
 source ~/.terminal_config/spectrum.zsh
-
 source ~/.terminal_config/sorin-modified.zsh-theme
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-execute

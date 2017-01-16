@@ -2,8 +2,12 @@ export PATH="/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/share/npm/bin:$PATH
 # source our aliases file
 [[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
 # enable colors in terminal
+
+# Set CLICOLOR if you want Ansi Colors in iTerm2
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+# Set colors to match iTerm2 Terminal Colors
+export TERM=xterm-256color
+
 # print the current directory in the bash prompt (http://goo.gl/GnkKz)
 export PS1="[\u@\h \w]\\$ "
 
@@ -22,7 +26,6 @@ export HISTIGNORE="&:ls:exit"
 # make vim the default editor
 export EDITOR=/usr/bin/vim
 
-# enable vi editing mode in terminal (will take some getting used to, but awesome!)
-set -o vi
-
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
