@@ -24,6 +24,7 @@
   sed = ! git grep -z --full-name -l '.' | LC_ALL=C xargs -0 sed -i.bak
   pile = stash --include-untracked
   up = !git fetch && git rebase --autostash FETCH_HEAD
+  releases = tag --sort version:refname
 
   # enterprise aliases for 10x dev
   hadouken = !"git push -f && echo 'つಠ益ಠ༽つ ─=≡ΣO))'"
