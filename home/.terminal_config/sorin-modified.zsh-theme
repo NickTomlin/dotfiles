@@ -1,4 +1,5 @@
-# ------------------------------------------------------------------------------
+# vim: set syntax=zsh:
+#------------------------------------------------------------------------------
 #          FILE:  sorin.zsh-theme
 #   DESCRIPTION:  oh-my-zsh theme file.
 #        AUTHOR:  Sorin Ionescu (sorin.ionescu@gmail.com)
@@ -9,6 +10,13 @@
 #    ** Miscleanous unicode symbols for fun and profit:
 #    source: http://www.utf8-chartable.de/unicode-utf8-table.pl
 #    ࿈ ᎒ ᐵ ࿓  ⬚ ⠮ ࿇ ⚀✪ ✍ ✎ ◆ ♻ ✪ ∆ ☦ ☭ ☢ ♨ ⚛ »
+#
+#    Colors can be super wacky or hard; the easiest thing is to look at spectrum.zsh
+#    and use the helper function ls_spectrum
+#
+#    Each of the 256 numbers can be used to print a color with the %F{000} escape sequence
+#
+#    Or, some of the supported ANSI strings mapped by zsh
 # ------------------------------------------------------------------------------
 
 ### GIT stuffz
@@ -25,7 +33,7 @@ git_untracked_count() {
 git_modified_count() {
   count=`echo $(timeout git ls-files -md | wc -l)`
   if [ $count -eq 0 ]; then return; fi
-  echo " %{$fg_bold[red]%}M%{$fg_no_bold[black]%}:%{$reset_color$fg[red]%}$count%{$reset_color%}"
+  echo " %{$fg_bold[magenta]%}M%{$fg_no_bold[black]%}:%{$reset_color$fg[red]%}$count%{$reset_color%}"
 }
 
 git_staged_count() {
@@ -37,9 +45,9 @@ git_staged_count() {
 git_branch() {
   branch=$(git symbolic-ref HEAD --quiet 2> /dev/null)
   if [ -z $branch ]; then
-    echo "%{$fg[yellow]%}$(git rev-parse --short HEAD)%{$reset_color%}"
+    echo "%F{3}$(git rev-parse --short HEAD)%{$reset_color%}"
   else
-    echo "%{$fg[magenta]%}${branch#refs/heads/}%{$reset_color%}"
+    echo "%F{3}${branch#refs/heads/}%{$reset_color%}"
   fi
 }
 
@@ -52,8 +60,8 @@ git_remote_difference() {
   behind_by=`echo $(git log --oneline HEAD..$remote/${branch#refs/heads/} 2> /dev/null | wc -l)`
 
   output=""
-  if [ $ahead_by -gt 0 ]; then output="$output%{$fg_bold[white]%}↑%{$reset_color%}$ahead_by"; fi
-  if [ $behind_by -gt 0 ]; then output="$output%{$fg_bold[white]%}↓%{$reset_color%}$behind_by"; fi
+  if [ $ahead_by -gt 0 ]; then output="$output%{$fg_bold[green]%}↑%{$reset_color%}$ahead_by"; fi
+  if [ $behind_by -gt 0 ]; then output="$output%{$fg_bold[green]%}↓%{$reset_color%}$behind_by"; fi
 
   echo $output
 }
@@ -83,7 +91,7 @@ git_prompt_info() {
 }
 
 if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
-  PROMPT='%{$fg[cyan]%}[%~]
+  PROMPT='%F{12}[%~]
 $(git_prompt_info)%(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%} ᎒)%{$fg_bold[blue]%}$(job_info) %{$reset_color%}'
 else
   PROMPT='%c$(git_prompt_info) ᎒'
