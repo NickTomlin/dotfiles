@@ -98,7 +98,9 @@ setopt cdablevarS
 if [[ $(uname -s) == "Darwin" ]]
   then
     autoload colors; colors;
-    export LSCOLORS="Gxfxcxdxbxegedabagacad"
+    export CLICOLOR=1
+    export LSCOLORS=ExFxBxDxCxegedabagacad
+
     alias ls='ls -G'
     # @todo Use MacVim instead of Vim (for system keyboard stuff, etc)
     # Should probably check if this exists before setting, but that'll come later
@@ -243,8 +245,7 @@ alias h="homeshick"
 # --- Themeing
 # pretty colors -- REQUIRED for spectrum support
 setopt prompt_subst
-# shorthand for colors
-source ~/.terminal_config/spectrum.zsh
+autoload colors
 source ~/.terminal_config/sorin-modified.zsh-theme
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
