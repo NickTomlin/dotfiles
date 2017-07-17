@@ -1,4 +1,5 @@
 " vim: foldmethod=marker
+" Uze zi to toggle folds OOOOOOR
 " use z + shift + r to decrease fold level and show all fold
 " use z + m to increase fold level to hide folds
 
@@ -60,10 +61,8 @@ Plug 'rakr/vim-one'
   set termguicolors
   set background=dark
   let g:one_allow_italics = 1
-  colorscheme one
-  "" ONE {{{
-  call one#highlight('Comment', '777777', '', 'none')
-  """ ONE }}}
+  autocmd VimEnter * colorscheme one
+  autocmd VimEnter * call one#highlight('Comment', 'cleared', '', 'none')
 
   set cursorline
   hi CursorLineNr ctermbg=none guibg=none ctermfg=180 guifg=#e5c07b
@@ -86,7 +85,10 @@ map <leader>fb :Buffers<CR>
 " }}}
 
 Plug 'w0rp/ale'
-" Ale Config {{{
+" === Ale Config {{{
+
+" always keep the signal column open (helps make the visual 'jog' for things like linting warning signs less awful)
+set signcolumn=yes
 let b:ale_linters = {
 \   'javascript': ['standard'],
 \   'javascript.jsx': ['standard'],
@@ -162,7 +164,7 @@ let g:deoplete#sources = get(g:,'deoplete#sources',{})
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs', 'ultisnips']
 " I'm not a fan of deoplete in markdown
 let g:deoplete#sources['markdown'] = []
-call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+autocmd VimEnter * call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 " Close the preview window once we autocomplete
 " https://github.com/ternjs/tern_for_vim/issues/21#issuecomment-239468366
@@ -175,33 +177,12 @@ Plug '$HOME/workspace/potion.vim'
 Plug 'NickTomlin/plug-open.vim'
 call plug#end()
 
-" Reload vimrc on save http://www.bestofvim.com/tip/auto-reload-your-vimrc/
-augroup reload_vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
-
-" Restore cursor position between Vim sessions
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
-
 " From: https://andrew.stwrt.ca/posts/project-specific-vimrc/
 " Allow automatic reading of per directory .vimrc
 set exrc
 " But... Ensure that only vimrc files cannot run shell commands unless owned
 " by me
 set secure
-" always keep the signal column open (helps make the visual 'jog' for things like linting warning signs less awful)
-set signcolumn=yes
 
 " Autoremove trailing spaces when saving the buffer
 autocmd FileType c,cpp,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -212,7 +193,7 @@ set gdefault
 " I don't spell good
 set spell
 
-" * SEARCH
+" === SEARCH
 " clear highlighted seaches
 set incsearch                    " find as you type search
 set hlsearch                     " highlight search terms
@@ -220,6 +201,8 @@ set hlsearch                     " highlight search terms
 " http://stackoverflow.com/a/2288438/1048479
 set ignorecase
 set smartcase
+
+" === ETC
 
 " left margin width http://stackoverflow.com/a/7941499/1048479
 set foldcolumn=0
@@ -232,15 +215,15 @@ set title
 set scrolloff=3 " lines above/below cursor
 " don't copy numbers with mouse
 set mouse=
-" Pasting over a selection does not replace the clipboard
-xnoremap <expr> p 'pgv"'.v:register.'y'"'
 
-" * SPLITS
+" I don't spell good
+set spell
+
+" === SPLITS
 " http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " more natural split opening
 set splitbelow
 set splitright
-
 " make switching between windows more natural
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -250,22 +233,20 @@ nnoremap <C-H> <C-W><C-H>
 " Equalize splits after a window resize (should this be in an autocommand group?)
 autocmd VimResized * wincmd =
 
-" * indentation
+" ===  indentation
+
 set shiftround " only tab in multiples of two
 " keep visual selection when shifting
 noremap > >gv
 vnoremap < <gv
 set shiftwidth=2
 set tabstop=2
-set expandtab " no tabs!
-" numbas!
-set number
-" override this later on if need be in after
+set expandtab " https://stackoverflow.blog/2017/06/15/developers-use-spaces-make-money-use-tabs/
+set number " Linenumbers
 set autoindent
-" I don't spell good
-set spell
 
 " ===  breaks
+
 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
 set wrap
 set linebreak
@@ -274,10 +255,12 @@ set textwidth=0
 set wrapmargin=0
 
 " === Directories
+
 " stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
 " we use the <path>// notation to try to reduce clobbering a little bit
 set backup                         " backups are nice ...
 set backupdir=$HOME/.vimbackup     " but not when they clog .
+
 " no swap files for the time being
 "set directory=$HOME/.vimswap//     " Same for swap files
 set viewdir=$HOME/.vimviews        " same for view files
@@ -293,14 +276,17 @@ silent execute '!mkdir -p $HOME/.nvimundo'
 " disable swapfiles
 set noswapfile
 
-" Pasting over a selection does not replace the clipboard
-xnoremap <expr> p 'pgv"'.v:register.'y'"'
-
 " EX
 set wildmenu " nice, zsh-like completion for ex commands
 set wildmode=longest:list
 
+" Status
 set statusline=%f\ -\ %y
+
+" === Mappings
+
+" Pasting over a selection does not replace the clipboard
+xnoremap <expr> p 'pgv"'.v:register.'y'"'
 
 " clear highlighted searches with enter
 map  <silent> <LocalLeader>nh :nohls<CR>
@@ -324,5 +310,27 @@ nnoremap <expr> <leader>; getline('.') =~ ';$' ? '' : "mqA;\<esc>`q"
 " Random Helpful mappings
 " less awkward =>
 imap <C-L> <SPACE>=><SPACE>
+
 " less awkward () =>
 imap <C-K> () =><SPACE>
+
+" Autocommands
+
+" Reload vimrc on save http://www.bestofvim.com/tip/auto-reload-your-vimrc/
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
+" Restore cursor position between Vim sessions
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
