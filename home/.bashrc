@@ -29,3 +29,6 @@ export EDITOR=/usr/bin/vim
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# added by travis gem
+[ -f /Users/ntomlin/.travis/travis.sh ] && source /Users/ntomlin/.travis/travis.sh
