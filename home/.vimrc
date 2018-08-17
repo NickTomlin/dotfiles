@@ -312,6 +312,10 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
     return expand('%')
   endfunction
 
+  " walker
+  nmap <silent> <leader>wm :call walker#mark()<CR>
+  nmap <silent> <leader>ww :call walker#walk()<CR>
+
   " * Rainbow
   let g:rainbow_active = 0
 

@@ -3,13 +3,23 @@
 " use z + shift + r to decrease fold level and show all fold
 " use z + m to increase fold level to hide folds
 
+
+" Remap leader to space
+" we do this way early because:
+" https://stackoverflow.com/questions/446269/can-i-use-space-as-mapleader-in-vim#comment72147920_446293
+noremap <Space> <Nop>
+map <Space> <leader>
+let mapleader = " "
+let maplocalleader=" "
+map \ <Nop>
+
 call plug#begin('~/.config/nvim/plugged')
 " External commands
 Plug 'benmills/vimux'
 " Plug 'christoomey/vim-tmux-runner'
 
-" Editing improvments
-Plug 'mattn/emmet-vim'
+" Editing improvements
+Plug 'mattn/emmet-vim', { 'for': ['erb', 'html', 'javascript.jsx', 'ejs', 'markdown'] }
 " === Emmet Config {{{
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
@@ -18,9 +28,10 @@ let g:user_emmet_settings = {
 \  },
 \}
 " }}}
+Plug 'jparise/vim-graphql'
 Plug 'sheerun/vim-polyglot'
 " === JS syntax Config {{{
-let g:jsx_ext_required = 1
+let g:jsx_ext_required = 0
 " }}}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
@@ -29,20 +40,40 @@ map <leader>c <c-_><c-_>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_STORE,*.pyc
 " }}}
 
-"=== Walker Config {{{
-" Add a stop to your code walk
-nmap <silent> <leader>wm :call walker#mark()<CR>
+Plug 'ntpeters/vim-better-whitespace' "{{{
+  nmap <LocalLeader>ws :StripWhitespace<cr>
+"}}}"
 
-" Open all stops in your codewalk in the quickfix list
-nmap <silent> <leader>ww :call walker#walk()<CR>
-" }}}
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
+
+" Elixir
+Plug 'elixir-lang/vim-elixir', { 'for': ['elixir'] }
+
+" Clojure
+let g:rainbow_active = 1
+Plug 'luochen1990/rainbow', { 'for': ['clojure'] }
+Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
+Plug 'guns/vim-sexp', { 'for': ['clojure'] }
+
+" Markdown
+Plug 'godlygeek/tabular', { 'for': ['markdown', 'md'] }
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
+Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'md'] }
+
+" Markdown config {{{
+  let g:vim_markdown_new_list_item_indent = 2
+  let g:vim_markdown_folding_disabled = 1
+  let g:vim_markdown_frontmatter = 1
+  let g:vim_markdown_autowrite = 1
+" }}}
 
 " Node
 Plug 'moll/vim-node', { 'for': ['javascript'] }
+Plug 'elzr/vim-json'
 
 " Tpope
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -50,31 +81,56 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rails', { 'for': ['ruby'] }
-Plug 'tpope/vim-endwise', { 'for': ['ruby'] }
+Plug 'tpope/vim-endwise', { 'for': ['ruby', 'elixir'] }
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
+Plug 'tpope/vim-rhubarb'
+
+let g:github_enterprise_urls = ['https://github.braintreeps.com']
 
 " Looks
 Plug 'w0ng/vim-hybrid'
 Plug 'rakr/vim-one'
+
 "=== Looks config {{{
   syntax enable
   set termguicolors
   set background=dark
   let g:one_allow_italics = 1
-  autocmd VimEnter * colorscheme one
-  autocmd VimEnter * call one#highlight('Comment', 'cleared', '', 'none')
+  autocmd VimEnter,ColorScheme * colorscheme one
+  autocmd VimEnter,ColorScheme * call one#highlight('Comment', 'cleared', '', 'none')
 
   set cursorline
   hi CursorLineNr ctermbg=none guibg=none ctermfg=180 guifg=#e5c07b
   hi CursorLine ctermbg=16 guibg=#333841
-  highlight LineNr ctermfg=59 guifg=#5c6370
-  highlight Comment gui=italic cterm=italic
+  hi LineNr ctermfg=59 guifg=#5c6370
+  hi Comment gui=italic cterm=italic
+  hi ExtraWhitespace guibg=#e06c75 ctermbg=red
+
+  " Statusline
+
+  " T_T T_T T_T
+  " https://vi.stackexchange.com/a/3356/12886
+  set statusline=%f
+  set statusline+=\ %1*
+  set statusline+=%y
+  set statusline+=%*
+  set statusline+=%=\ {%l\|%c}
+
+  autocmd VimEnter,ColorScheme *
+        \ hi User1 cterm=italic gui=italic,bold ctermfg=176 guifg=#c678dd guibg=#2c323c |
+        \ hi StatusLine ctermfg=145 ctermbg=16 guifg=#abbaaa guibg=#2c323c |
+        \ hi StatusLineNC ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE guifg=NONE guibg=NONE
 " }}}
 
-" Plug 'mhartington/nvim-typescript'
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 "=== fzf Config {{{
 map <leader>ff :Files<CR>
 " git status files
@@ -82,8 +138,9 @@ map <leader>fg :GFiles?<CR>
 map <leader>fa :Files<CR>
 map <leader>fh :Helptags<CR>
 map <leader>fb :Buffers<CR>
-" }}}
 
+" }}}
+"
 Plug 'w0rp/ale'
 " === Ale Config {{{
 
@@ -124,21 +181,12 @@ nmap <silent> <leader>rl :TestLast<CR>
 
 map <silent> <LocalLeader>ds :call VimuxRunCommand('clear; grep -E "^ *describe[ \( ]\|^ *context[ \( ]\|^ *it[ \( ]" ' . bufname("%"))<CR>
 " }}}
-
-" Completion
+"
+" " Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'Shougo/neco-vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 
-"  UltiSnips Config {{{
-let g:UltiSnipsExpandTrigger="<C-j>"
-" }}}
-
-" Tern config {{{
+" === Tern config {{{
 " Default key mappings \t
 " https://github.com/ternjs/tern_for_vim/blob/ae42c69ada7243fe4801fce3b916bbc2f40ac4ac/autoload/tern.vim#L108
 let g:tern_map_keys=1
@@ -148,11 +196,35 @@ let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on
 " deoplete interop
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
+let g:tern#is_show_argument_hints_enabled = 1
 " }}}
+"
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'Shougo/neco-vim', { 'for': ['vim'] }
+Plug 'Shougo/neosnippet'
+Plug 'NickTomlin/my-neosnippets'
+
+" ===  neosnippet config {{{
+let g:neosnippet#disable_runtime_snippets = {
+      \   '_' : 1,
+      \ }
+imap <C-j>  <Plug>(neosnippet_expand_or_jump)
+smap <C-j>  <Plug>(neosnippet_expand_or_jump)
+xmap <C-j>  <Plug>(neosnippet_expand_target)
+
+let g:neosnippet#snippets_directory='~/.config/nvim/plugged/my-neosnippets'
+"}}}
 
 " Deoplete config {{{
-" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
-let g:deoplete#enable_at_startup = 1
+" Speed optimizations
+" https://github.com/Shougo/deoplete.nvim/blob/master/doc%2Fdeoplete.txt#L1495
+let g:python_host_prog  = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+let g:deoplete#enable_at_startup = 0
+" autocmd InsertEnter * call deoplete#enable()
+
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
   \ 'tern#Complete',
@@ -164,17 +236,40 @@ let g:deoplete#sources = get(g:,'deoplete#sources',{})
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs', 'ultisnips']
 " I'm not a fan of deoplete in markdown
 let g:deoplete#sources['markdown'] = []
-autocmd VimEnter * call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+let g:deoplete#ignore_sources = get(g:,'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources._ = ["neosnippet"]
+" autocmd VimEnter * call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 
-" Close the preview window once we autocomplete
-" https://github.com/ternjs/tern_for_vim/issues/21#issuecomment-239468366
+" " Close the preview window once we autocomplete
+" " https://github.com/ternjs/tern_for_vim/issues/21#issuecomment-239468366
+autocmd BufEnter * set completeopt-=preview
 autocmd CompleteDone * pclose
-" }}}
+" " }}}
+"
 
-" My shizzle
-Plug '$HOME/workspace/walker.vim'
-Plug '$HOME/workspace/potion.vim'
+" Dash integration
+if has('mac')
+  Plug 'rizzatti/dash.vim'
+  :nmap <silent> <leader>d <Plug>DashSearch
+endif
+
+"
+" " My shizzle
+Plug '$HOME/workspace/kino.vim'
 Plug 'NickTomlin/plug-open.vim'
+Plug '$HOME/workspace/walker.vim'
+"=== Walker Config {{{
+" Add a stop to your code walk
+nmap <silent> <leader>wm :call walker#mark()<CR>
+" Open all stops in your codewalk in the quickfix list
+nmap <silent> <leader>wo :call walker#open()<CR>
+" }}}
+" === Remote Config {{{
+nmap <silent> <LocalLeader>kt :KAction toggle<CR>
+nmap <silent> <LocalLeader>ku :KAction scroll-up<CR>
+nmap <silent> <LocalLeader>kd :KAction scroll-down<CR>
+nmap <silent> <LocalLeader>k :KLastAction<CR>
+" }}}
 call plug#end()
 
 " From: https://andrew.stwrt.ca/posts/project-specific-vimrc/
@@ -184,8 +279,9 @@ set exrc
 " by me
 set secure
 
-" Autoremove trailing spaces when saving the buffer
+" autoremove trailing spaces when saving the buffer
 autocmd FileType c,cpp,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 " Disable annoying ex mode (Q)
 map Q <nop>
 " the /g flag on :s substitutions by default
@@ -254,6 +350,10 @@ set nolist  " list disables linebreak"
 set textwidth=0
 set wrapmargin=0
 
+" no slow crappy sql autocomplete when <ctrl-c>c
+" https://www.reddit.com/r/vim/comments/2om1ib/how_to_disable_sql_dynamic_completion/
+let g:omni_sql_no_default_maps = 1
+
 " === Directories
 
 " stolen from https://github.com/kgust/dotvim/blob/master/vimrc#L40 (thanks, Kevin!)
@@ -280,10 +380,20 @@ set noswapfile
 set wildmenu " nice, zsh-like completion for ex commands
 set wildmode=longest:list
 
-" Status
-set statusline=%f\ -\ %y
+" {{{ === netrw
+" https://gist.github.com/KevinSjoberg/5068370
+let g:netrw_localrmdir='rm -r'
+" }}}
 
 " === Mappings
+
+function! GitGrepWord()
+  cgetexpr system("git grep -n '" . expand("<cword>") . "'")
+  cwin
+  echo 'Number of matches: ' . len(getqflist())
+endfunction
+command! -nargs=0 GitGrepWord :call GitGrepWord()
+nnoremap <silent> <Leader>gw :GitGrepWord<CR>
 
 " Pasting over a selection does not replace the clipboard
 xnoremap <expr> p 'pgv"'.v:register.'y'"'
@@ -303,16 +413,15 @@ command! -nargs=* -bar -bang -count=0 -complete=dir E Explore <args>
 " Make ctrcl+c act like escape (instead of terminating)
 vnoremap <C-c> <Esc>
 
-" Easily add a semicolon to the current line
+" Easily toggle semicolon to the current line
 " https://vi.stackexchange.com/a/3723
-nnoremap <expr> <leader>; getline('.') =~ ';$' ? '' : "mqA;\<esc>`q"
+nnoremap <expr> <leader>; getline('.') =~ ';$' ? 'mq$x\<esc>`q' : "mqA;\<esc>`q"
+nnoremap <expr> <leader>rd getline('.') =~ 'binding\.pry' ?  'dd' : 'Obinding.pry'
 
 " Random Helpful mappings
 " less awkward =>
 imap <C-L> <SPACE>=><SPACE>
-
-" less awkward () =>
-imap <C-K> () =><SPACE>
+imap <C-K> <SPACE>\|><SPACE>
 
 " Autocommands
 
@@ -321,6 +430,18 @@ augroup reload_vimrc
   autocmd!
   autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
+
+function! GitHubURL() range
+   let branch = systemlist("git name-rev --name-only HEAD")[0]
+   let remote = systemlist("git config branch." . branch . ".remote")[0]
+   let repo = systemlist("git config --get remote." . remote . ".url | sed 's/\.git$//' | sed 's_^git@\\(.*\\):_https://\\1/_' | sed 's_^git://_https://_'")[0]
+   let revision = systemlist("git rev-parse HEAD")[0]
+
+  let path = systemlist("git ls-files --full-name " . @%)[0]
+  let url = repo . "/blob/" . revision . "/" . path . "#L" . a:firstline . "-L" . a:lastline
+  echomsg url
+endfunction
+command! -range GitHubURL <line1>,<line2>call GitHubURL()
 
 " Restore cursor position between Vim sessions
 function! ResCur()
@@ -332,5 +453,6 @@ endfunction
 
 augroup resCur
   autocmd!
-  autocmd BufWinEnter * call ResCur()
+  "
+  autocmd BufWinEnter * if index(['netrw'], &ft) < 0 | call ResCur()
 augroup END

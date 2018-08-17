@@ -97,7 +97,7 @@ setopt cdablevarS
 
 if [[ $(uname -s) == "Darwin" ]]
   then
-    autoload colors; colors;
+    # autoload colors; colors;
     export CLICOLOR=1
     export LSCOLORS=ExFxBxDxCxegedabagacad
 
@@ -150,7 +150,7 @@ alias blog='$EDITOR ~/Dropbox/sync/octoblog-drafts'
 alias poetry='$EDITOR ~/Dropbox/sync/poetry.md'
 alias present='$EDITOR ~/Dropbox/sync/presentations/prep'
 alias vimsimple='vim -u ~/.vim/simple-vimrc'
-alias t='tmux'
+alias tm='tmux'
 alias tat='tmux attach -t'
 alias team='teamocil'
 alias g='git'
@@ -161,7 +161,7 @@ nicedate () {
   date +%m-%d-%y
 }
 ## Avoid a screen full of vendor junk when using tree
-alias tree="tree -I 'node_modules|vendor'"
+alias tree="tree -I 'node_modules|vendor|yarn-packages'"
 ## Line numbers with cat
 alias catn='cat -n'
 ## Open changed files in vim
@@ -175,37 +175,46 @@ source ~/.terminal_config/functions.zsh
 ######
 # Language Specific
 ######
+#
+autoload -U add-zsh-hook
 
 # --- RUBY
 
-## RBENV
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# RBENV
+load-rbenv() {
+  if [[ -f .ruby-version && -r .ruby-version ]]; then
+    if ! which rbenv >/dev/null; then
+      eval "$(rbenv init -)"
+    fi
+  fi
+}
+
+add-zsh-hook chpwd load-rbenv
 
 alias rh="rbenv rehash"
 alias be="bundle exec"
 
+
 # --- NODE
 
-## NVM
-if [[ $(uname -s) == "Darwin" ]]
-  then
+function load-nvm () {
+  if [[ $OSTYPE == "darwin"* ]]; then
     export NVM_DIR=~/.nvm
     [[ -s $(brew --prefix nvm)/nvm.sh ]] && source $(brew --prefix nvm)/nvm.sh
   else
     [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
-fi
+  fi
+}
 
-autoload -U add-zsh-hook
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
+    if ! type nvm >/dev/null; then
+      load-nvm
+    fi
     nvm use
   fi
 }
 add-zsh-hook chpwd load-nvmrc
-
-# on probation due to possible shell slowness:
-# [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-# nvm alias default 0.10 && nvm use default;
 
 # make it easier to run things in node_modules
 alias npm-exec='env PATH="$(npm bin):$PATH"'
@@ -228,9 +237,13 @@ function mkrun () {
  make $1 && ./$1 "${@:2}"
 }
 
+
 ######
 # Kick off the pretty stuff
 ######
+
+# https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2#.i6lsfewmg
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!yarn-packages/*"'
 
 # --- Homeschick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
@@ -252,3 +265,6 @@ source ~/.terminal_config/sorin-modified.zsh-theme
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-execute
+
+# added by travis gem
+[ -f /Users/ntomlin/.travis/travis.sh ] && source /Users/ntomlin/.travis/travis.sh
