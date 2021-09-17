@@ -23,7 +23,7 @@ export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin'
 
 # --- Shell Options
 # Make sure to fix the horribly slow git completion with https://github.com/bobthecow/git-flow-completion/wiki/Update-Zsh-git-completion-module
-EDITOR='vim' # emacs sucks. J/K. Not really.
+EDITOR='nvim' # emacs sucks. J/K. Not really.
 export EDITOR
 
 # Prevents zsh from messing with tmux window title http://superuser.com/a/320316
@@ -181,16 +181,6 @@ autoload -U add-zsh-hook
 # --- RUBY
 
 # RBENV
-load-rbenv() {
-  if [[ -f .ruby-version && -r .ruby-version ]]; then
-    if ! which rbenv >/dev/null; then
-      eval "$(rbenv init -)"
-    fi
-  fi
-}
-
-add-zsh-hook chpwd load-rbenv
-
 alias rh="rbenv rehash"
 alias be="bundle exec"
 
@@ -198,39 +188,63 @@ alias be="bundle exec"
 # --- NODE
 
 function load-nvm () {
-  if [[ $OSTYPE == "darwin"* ]]; then
-    export NVM_DIR=~/.nvm
-    [[ -s $(brew --prefix nvm)/nvm.sh ]] && source $(brew --prefix nvm)/nvm.sh
-  else
-    [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
-  fi
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 }
 
+
+# updated omni-node one
 load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
+  if [[ -f package.json ]]; then
     if ! type nvm >/dev/null; then
       load-nvm
     fi
-    nvm use
+    local node_version="$(nvm version)"
+
+    if [[ -f .nvmrc && -r .nvmrc ]]; then
+      local nvmrc_path="$(nvm_find_nvmrc)"
+      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+      if [ "$nvmrc_node_version" != "$node_version" ]; then
+        echo "found an nvmrc using it"
+        nvm use
+      fi
+    else
+      if [ "$node_version" != "$(nvm version default)" ]; then
+        nvm use default
+      fi
+    fi
   fi
 }
+
+# this is the "cannonical" one
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+#
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
 add-zsh-hook chpwd load-nvmrc
+alias initnvm=load-nvm
 
 # make it easier to run things in node_modules
 alias npm-exec='env PATH="$(npm bin):$PATH"'
 alias ne='npm-exec'
 
-# --- PYTHON
-# @todo manually source virtualenvwrapper instead of using venv burrito (fix python3 incompatibility)
-# [pyenv](https://github.com/yyuu/pyenv)
-# eval "$(pyenv init -)"
-
 ######
 # PAAS related tools
 ######
-
-# Heroku
-# [[ -d "/usr/bin/heroku" ]] && export PATH="/usr/local/heroku/bin:$PATH"
 
 # --- C
 function mkrun () {
@@ -266,5 +280,8 @@ source ~/.terminal_config/sorin-modified.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-execute
 
-# added by travis gem
-[ -f /Users/ntomlin/.travis/travis.sh ] && source /Users/ntomlin/.travis/travis.sh
+alias vi='nvim'
+export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
+
+alias jira=/usr/local/bin/jira
+alias gw="./gradlew"

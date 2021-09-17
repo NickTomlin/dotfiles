@@ -1,6 +1,6 @@
 [user]
-  name = "Nick Tomlin"
-  email= nick.tomlin@gmail.com
+	name = Nick Tomlin
+	email = nick.tomlin@gmail.com
 [color]
   ui = auto
 [push]
@@ -32,3 +32,4 @@
   burninate = !git reset HEAD --hard
 [core]
 	excludesfile = /Users/ntomlin/.gitignore_global
+	editor = nvim

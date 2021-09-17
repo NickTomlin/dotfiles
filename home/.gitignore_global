@@ -2,6 +2,13 @@
 .sublime-workspace
 .sublime-project
 *.swp
+.idea
+build/
+.gradle/
+*.iml
+*.ipr
+*.iws
+
 # Preprocessing #
 .sass-cache
 # Compiled source #
@@ -22,7 +29,6 @@
 *.dmg
 *.gz
 *.iso
-*.jar
 *.rar
 *.tar
 *.zip
@@ -30,7 +36,6 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 # OS generated files #
@@ -47,3 +52,8 @@ Thumbs.db
 # NODE #
 ######################
 .node_modules
+
+*.classpath
+*.project
+*.settings
+
