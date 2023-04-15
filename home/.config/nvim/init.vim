@@ -28,7 +28,6 @@ let g:user_emmet_settings = {
 \  },
 \}
 " }}}
-Plug 'jparise/vim-graphql'
 Plug 'sheerun/vim-polyglot'
 " === JS syntax Config {{{
 let g:jsx_ext_required = 0
@@ -46,16 +45,6 @@ Plug 'ntpeters/vim-better-whitespace' "{{{
 
 Plug 'jiangmiao/auto-pairs'
 
-" Elixir
-Plug 'elixir-lang/vim-elixir', { 'for': ['elixir'] }
-
-" Clojure
-let g:rainbow_active = 1
-Plug 'luochen1990/rainbow', { 'for': ['clojure'] }
-Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
-Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
-Plug 'guns/vim-sexp', { 'for': ['clojure'] }
-
 " Markdown
 Plug 'godlygeek/tabular', { 'for': ['markdown', 'md'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
@@ -68,8 +57,7 @@ Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'md'] }
   let g:vim_markdown_autowrite = 1
 " }}}
 
-" Node
-Plug 'moll/vim-node', { 'for': ['javascript'] }
+" Node/JS
 Plug 'elzr/vim-json'
 
 " Tpope
@@ -80,24 +68,52 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-rails', { 'for': ['ruby'] }
 Plug 'tpope/vim-endwise', { 'for': ['ruby', 'elixir'] }
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
-Plug 'tpope/vim-rhubarb'
-
-let g:github_enterprise_urls = ['https://github.braintreeps.com']
 
 " Looks
-Plug 'w0ng/vim-hybrid'
-Plug 'rakr/vim-one'
+" Plug 'w0ng/vim-hybrid'
+" Plug 'rakr/vim-one'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+"=== fzf Config {{{
+map <leader>ff :Files<CR>
+" git status files
+map <leader>fg :GFiles?<CR>
+map <leader>fa :Files<CR>
+map <leader>fh :Helptags<CR>
+map <leader>fb :Buffers<CR>
+
+" }}}
+"
+Plug 'janko-m/vim-test'
+" Vim Test config {{{
+let test#strategy = "vimux"
+nmap <silent> <leader>rf :TestNearest<CR>
+nmap <silent> <leader>rb :TestFile<CR>
+nmap <silent> <leader>rl :TestLast<CR>
+
+map <silent> <LocalLeader>ds :call VimuxRunCommand('clear; grep -E "^ *describe[ \( ]\|^ *context[ \( ]\|^ *it[ \( ]" ' . bufname("%"))<CR>
+" }}}
+
+
+call plug#end()
 
 "=== Looks config {{{
   syntax enable
   set termguicolors
   set background=dark
   let g:one_allow_italics = 1
-  autocmd VimEnter,ColorScheme * colorscheme one
-  autocmd VimEnter,ColorScheme * call one#highlight('Comment', 'cleared', '', 'none')
+
+  colorscheme catppuccin-macchiato
 
   set cursorline
   hi CursorLineNr ctermbg=none guibg=none ctermfg=180 guifg=#e5c07b
@@ -122,155 +138,6 @@ Plug 'rakr/vim-one'
         \ hi StatusLineNC ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE guifg=NONE guibg=NONE
 " }}}
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-"=== fzf Config {{{
-map <leader>ff :Files<CR>
-" git status files
-map <leader>fg :GFiles?<CR>
-map <leader>fa :Files<CR>
-map <leader>fh :Helptags<CR>
-map <leader>fb :Buffers<CR>
-
-" }}}
-"
-Plug 'w0rp/ale'
-" === Ale Config {{{
-
-" always keep the signal column open (helps make the visual 'jog' for things like linting warning signs less awful)
-set signcolumn=yes
-let b:ale_linters = {
-\   'javascript': ['standard'],
-\   'javascript.jsx': ['standard'],
-\}
-
-function! DetermineJSLinter()
-  " we should inspect for jshint, jscs, eslint here
-  let files = split(globpath('.', '.eslintrc'), '\n')
-  if len(files) > 0
-    let b:ale_linters = { 'javascript': ['eslint'], 'javascript.jsx': ['eslint'] }
-  else
-    " unsure why we need to set this here
-    let b:ale_linters = {
-          \   'javascript': ['standard'],
-          \   'javascript.jsx': ['standard'],
-          \}
-  endif
-endfunction
-
-augroup FiletypeGroup
-  autocmd!
-  au BufNewFile,BufRead *.js,*.jsx :call DetermineJSLinter()
-augroup END
-
-let g:ale_echo_msg_format = '%linter%: %s'
-" }}}
-Plug 'janko-m/vim-test'
-" Vim Test config {{{
-let test#strategy = "vimux"
-nmap <silent> <leader>rf :TestNearest<CR>
-nmap <silent> <leader>rb :TestFile<CR>
-nmap <silent> <leader>rl :TestLast<CR>
-
-map <silent> <LocalLeader>ds :call VimuxRunCommand('clear; grep -E "^ *describe[ \( ]\|^ *context[ \( ]\|^ *it[ \( ]" ' . bufname("%"))<CR>
-" }}}
-"
-" " Completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
-
-" === Tern config {{{
-" Default key mappings \t
-" https://github.com/ternjs/tern_for_vim/blob/ae42c69ada7243fe4801fce3b916bbc2f40ac4ac/autoload/tern.vim#L108
-let g:tern_map_keys=1
-let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
-
-" deoplete interop
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
-let g:tern#is_show_argument_hints_enabled = 1
-" }}}
-"
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'Shougo/neco-vim', { 'for': ['vim'] }
-Plug 'Shougo/neosnippet'
-Plug 'NickTomlin/my-neosnippets'
-
-" ===  neosnippet config {{{
-let g:neosnippet#disable_runtime_snippets = {
-      \   '_' : 1,
-      \ }
-imap <C-j>  <Plug>(neosnippet_expand_or_jump)
-smap <C-j>  <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>  <Plug>(neosnippet_expand_target)
-
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/my-neosnippets'
-"}}}
-
-" Deoplete config {{{
-" Speed optimizations
-" https://github.com/Shougo/deoplete.nvim/blob/master/doc%2Fdeoplete.txt#L1495
-let g:python_host_prog  = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3'
-
-let g:deoplete#enable_at_startup = 0
-" autocmd InsertEnter * call deoplete#enable()
-
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'jspc#omni'
-\]
-
-set completeopt=longest,menuone,preview
-let g:deoplete#sources = get(g:,'deoplete#sources',{})
-let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs', 'ultisnips']
-" I'm not a fan of deoplete in markdown
-let g:deoplete#sources['markdown'] = []
-let g:deoplete#ignore_sources = get(g:,'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources._ = ["neosnippet"]
-" autocmd VimEnter * call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
-
-" " Close the preview window once we autocomplete
-" " https://github.com/ternjs/tern_for_vim/issues/21#issuecomment-239468366
-autocmd BufEnter * set completeopt-=preview
-autocmd CompleteDone * pclose
-" " }}}
-"
-
-" Dash integration
-if has('mac')
-  Plug 'rizzatti/dash.vim'
-  :nmap <silent> <leader>d <Plug>DashSearch
-endif
-
-"
-" " My shizzle
-Plug '$HOME/workspace/kino.vim'
-Plug 'NickTomlin/plug-open.vim'
-Plug '$HOME/workspace/walker.vim'
-"=== Walker Config {{{
-" Add a stop to your code walk
-nmap <silent> <leader>wm :call walker#mark()<CR>
-" Open all stops in your codewalk in the quickfix list
-nmap <silent> <leader>wo :call walker#open()<CR>
-" }}}
-" === Remote Config {{{
-nmap <silent> <LocalLeader>kt :KAction toggle<CR>
-nmap <silent> <LocalLeader>ku :KAction scroll-up<CR>
-nmap <silent> <LocalLeader>kd :KAction scroll-down<CR>
-nmap <silent> <LocalLeader>k :KLastAction<CR>
-" }}}
-call plug#end()
 
 " From: https://andrew.stwrt.ca/posts/project-specific-vimrc/
 " Allow automatic reading of per directory .vimrc

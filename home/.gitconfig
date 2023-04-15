@@ -33,3 +33,18 @@
 [core]
 	excludesfile = /Users/ntomlin/.gitignore_global
 	editor = nvim
+[http "https://stash.prod.netflix.net:7006"]
+	sslCert = /Users/ntomlin/.metatron/user.crt
+	sslKey = /Users/ntomlin/.metatron/user.key
+	sslVerify = true
+[url "https://stash.prod.netflix.net:7006/scm"]
+	insteadOf = ssh://git@stash.corp.netflix.com:7999
+[url "https://stash.prod.netflix.net:7006"]
+	insteadOf = https://stash.corp.netflix.com
+	insteadOf = https://stash.corp.netflix.com:7006
+	insteadOf = https://stash.corp.netflix.com:7004
+	insteadOf = https://stash.netflix.com
+[http "https://stash-corp-ci-stable.prod.netflix.net:7006"]
+	sslCert = /Users/ntomlin/.metatron/user.crt
+	sslKey = /Users/ntomlin/.metatron/user.key
+	sslVerify = true

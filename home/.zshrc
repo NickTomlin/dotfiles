@@ -16,272 +16,140 @@
 # Font: http://damieng.com/blog/2007/11/14/droid-font-family-courtesy-of-google-ascender
 # Iterm: Theme: https://github.com/baskerville/iTerm-2-Color-Themes arthur
 
-# --- PATH
-# prefer user packages to system ones
-# @todo trim this down?
-export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin'
 
-# --- Shell Options
-# Make sure to fix the horribly slow git completion with https://github.com/bobthecow/git-flow-completion/wiki/Update-Zsh-git-completion-module
-EDITOR='nvim' # emacs sucks. J/K. Not really.
-export EDITOR
+# Start configuration added by Zim install {{{
+#
+# User configuration sourced by interactive shells
+#
 
-# Prevents zsh from messing with tmux window title http://superuser.com/a/320316
-DISABLE_AUTO_TITLE=true
+# -----------------
+# Zsh configuration
+# -----------------
 
-## Autocomplete
-autoload -U compinit
-compinit
+#
+# History
+#
 
-autoload -U select-word-style
-select-word-style bash
+# Remove older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_ALL_DUPS
 
-### @borked Reverse tab in autocomplete http://stackoverflow.com/a/842370/1048479
-# bindkey '^[[Z' reverse-menu-complete
-set -o emacs
+#
+# Input/output
+#
 
-### Edit command line (http://nuclearsquid.com/writings/edit-long-commands/)
-autoload -U edit-command-line
-bindkey '^xe' edit-command-line
-bindkey '^x^e' edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -e
 
-### provide reverse I search in vi mode
-bindkey "^R" history-incremental-search-backward
+# Prompt for spelling correction of commands.
+#setopt CORRECT
 
-#### quick-switch to command mode (http://superuser.com/a/353127/146376)
-bindkey '^j' vi-cmd-mode
+# Customize spelling correction prompt.
+#SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 
-## Default `cd` to pushd/popd
-setopt autopushd
+# Remove path separator from WORDCHARS.
+WORDCHARS=${WORDCHARS//[\/]}
 
-# Smart quote urls
-autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
+# -----------------
+# Zim configuration
+# -----------------
 
-## pager
-export PAGER="less"
-export LESS="-R"
-export LC_CTYPE=$LANG
+# Use degit instead of git as the default tool to install and update modules.
+#zstyle ':zim:zmodule' use 'degit'
 
-## History
-## Command history configuration
-if [ -z "$HISTFILE" ]; then
-    HISTFILE=$HOME/.zsh_history
-fi
-HISTSIZE=500
-SAVEHIST=1000
+# --------------------
+# Module configuration
+# --------------------
 
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
-setopt hist_ignore_space
-setopt hist_verify
-setopt inc_append_history
-setopt share_history # share command history data
+#
+# git
+#
 
-# Ignore certain commands http://stackoverflow.com/questions/4747337/how-can-ignore-more-than-one-commands-from-history
-export HISTIGNORE="&:ls:exit:ll:l:fg"
+# Set a custom prefix for the generated aliases. The default prefix is 'G'.
+#zstyle ':zim:git' aliases-prefix 'g'
 
-### Remove duplicates
-export HISTCONTROL=erasedups
+#
+# input
+#
 
-### Timestamps with history entries
-#@BORKED export HISTTIMEFORMAT="%F %T "
+# Append `../` to your input for each `.` you type after an initial `..`
+#zstyle ':zim:input' double-dot-expand yes
 
-# --- OS
-setopt auto_cd
-setopt multios
-setopt cdablevarS
+#
+# termtitle
+#
 
-if [[ $(uname -s) == "Darwin" ]]
-  then
-    # autoload colors; colors;
-    export CLICOLOR=1
-    export LSCOLORS=ExFxBxDxCxegedabagacad
+# Set a custom terminal title format using prompt expansion escape sequences.
+# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
+# If none is provided, the default '%n@%m: %~' is used.
+#zstyle ':zim:termtitle' format '%1~'
 
-    alias ls='ls -G'
-    # @todo Use MacVim instead of Vim (for system keyboard stuff, etc)
-    # Should probably check if this exists before setting, but that'll come later
-    # alias vim=/usr/local/Cellar/macvim/7.3-65/MacVim.app/Contents/MacOS/vim
-    # this may need to happen within local alises, since installed version differs from system to system
-    # or: symlink macvim to bin and then access it there?
-    # or: grep for it?
-    open=open
+#
+# zsh-autosuggestions
+#
+
+# Disable automatic widget re-binding on each precmd. This can be set when
+# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# Customize the style that the suggestions are shown with.
+# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+
+#
+# zsh-syntax-highlighting
+#
+
+# Set what highlighters will be used.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+# Customize the main highlighter styles.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
+#typeset -A ZSH_HIGHLIGHT_STYLES
+#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
+
+# ------------------
+# Initialize modules
+# ------------------
+
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  if (( ${+commands[curl]} )); then
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
   else
-    open=xdg-open # consider prepending 'detach' to free up process on open [source](http://unix.stackexchange.com/a/74622/38479)
-fi
-
-######
-# ALIASES
-######
-
-# --- buitins
-## Display stack number next to directory listing
-alias dirs='dirs -v'
-
-# mkdir
-## have mkdir create parent directories
-alias mkdir='mkdir -pv'
-
-# cd
-alias cd..='cd ..'
-alias cd...='cd ../..'
-alias cd....='cd ../../..'
-alias cd.....='cd ../../../..'
-alias cd/='cd /'
-
-# ls niceities
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
-
-# history
-alias history='fc -l 1'
-
-# grep
-# alias grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
-
-# --- "Portable" bash aliases
-alias zshrc='$EDITOR ~/.zshrc'
-alias blog='$EDITOR ~/Dropbox/sync/octoblog-drafts'
-alias poetry='$EDITOR ~/Dropbox/sync/poetry.md'
-alias present='$EDITOR ~/Dropbox/sync/presentations/prep'
-alias vimsimple='vim -u ~/.vim/simple-vimrc'
-alias tm='tmux'
-alias tat='tmux attach -t'
-alias team='teamocil'
-alias g='git'
-
-# --- Convenience
-## Print the current date (for backups, etc)
-nicedate () {
-  date +%m-%d-%y
-}
-## Avoid a screen full of vendor junk when using tree
-alias tree="tree -I 'node_modules|vendor|yarn-packages'"
-## Line numbers with cat
-alias catn='cat -n'
-## Open changed files in vim
-alias editchanged='vim `git status --porcelain | sed -ne '\''s/^ M //p'\''`'
-
-######
-# FUNCTIONS
-######
-source ~/.terminal_config/functions.zsh
-
-######
-# Language Specific
-######
-#
-autoload -U add-zsh-hook
-
-# --- RUBY
-
-# RBENV
-alias rh="rbenv rehash"
-alias be="bundle exec"
-
-
-# --- NODE
-
-function load-nvm () {
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-}
-
-
-# updated omni-node one
-load-nvmrc() {
-  if [[ -f package.json ]]; then
-    if ! type nvm >/dev/null; then
-      load-nvm
-    fi
-    local node_version="$(nvm version)"
-
-    if [[ -f .nvmrc && -r .nvmrc ]]; then
-      local nvmrc_path="$(nvm_find_nvmrc)"
-      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-      if [ "$nvmrc_node_version" != "$node_version" ]; then
-        echo "found an nvmrc using it"
-        nvm use
-      fi
-    else
-      if [ "$node_version" != "$(nvm version default)" ]; then
-        nvm use default
-      fi
-    fi
+    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
   fi
-}
+fi
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
 
-# this is the "cannonical" one
-# load-nvmrc() {
-#   local node_version="$(nvm version)"
-#   local nvmrc_path="$(nvm_find_nvmrc)"
+# ------------------------------
+# Post-init module configuration
+# ------------------------------
+
 #
-#   if [ -n "$nvmrc_path" ]; then
-#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+# zsh-history-substring-search
 #
-#     if [ "$nvmrc_node_version" = "N/A" ]; then
-#       nvm install
-#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-#       nvm use
-#     fi
-#   elif [ "$node_version" != "$(nvm version default)" ]; then
-#     echo "Reverting to nvm default version"
-#     nvm use default
-#   fi
-# }
-add-zsh-hook chpwd load-nvmrc
-alias initnvm=load-nvm
 
-# make it easier to run things in node_modules
-alias npm-exec='env PATH="$(npm bin):$PATH"'
-alias ne='npm-exec'
+zmodload -F zsh/terminfo +p:terminfo
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
+for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('k') bindkey -M vicmd ${key} history-substring-search-up
+for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+unset key
+# }}} End configuration added by Zim install
 
-######
-# PAAS related tools
-######
+source ~/.zsh_aliases
 
-# --- C
-function mkrun () {
- make $1 && ./$1 "${@:2}"
-}
-
-
-######
-# Kick off the pretty stuff
-######
-
-# https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2#.i6lsfewmg
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!yarn-packages/*"'
-
-# --- Homeschick
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-alias h="homeshick"
-
-# --- Z yo
-. "$HOME/z.sh"
-
-# local config / aliases
-[[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases";
-
-# --- Themeing
-# pretty colors -- REQUIRED for spectrum support
-setopt prompt_subst
-autoload colors
-source ~/.terminal_config/sorin-modified.zsh-theme
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^ ' autosuggest-execute
-
-alias vi='nvim'
-export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
-
-alias jira=/usr/local/bin/jira
-alias gw="./gradlew"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH=/usr/local/opt/curl-openssl/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin

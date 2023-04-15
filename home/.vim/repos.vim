@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 " let Vundle manage Vundle
 " required!
+Plug 'Th3Whit3Wolf/one-nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'chriskempson/base16-vim'
@@ -11,13 +12,13 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'L9'
+" Plug 'L9'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'bufexplorer.zip'
+Plug 'jlanzarotta/bufexplorer' " bufexplorer.zip'
 Plug 'benmills/vimux'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tommcdo/vim-exchange'
@@ -57,7 +58,6 @@ Plug 'honza/vim-snippets'
 
 Plug 'nicktomlin/wap-it'
 " ---
-Plug 'kchmck/vim-coffee-script'
 " }}}
 Plug 'vim-scripts/SyntaxRange'
 " All the syntax highlighting
