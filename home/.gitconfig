@@ -1,12 +1,14 @@
 [user]
 	name = Nick Tomlin
-	email = nick.tomlin@gmail.com
+	email = NickTomlin@users.noreply.github.com
 [color]
   ui = auto
 [push]
   default = simple
+  autoSetupRemote = true
 [alias]
   ci = commit
+  cm = commit -m
   co = checkout
   st = status
   br = branch
@@ -26,26 +28,22 @@
   pile = stash --include-untracked
   up = !git fetch && git rebase --autostash FETCH_HEAD
   releases = tag --sort version:refname
+  pu = push -u origin HEAD
+  puf = pu -f
+  amen = commit --amend
+  rr = reset @{u}
+  haircut = rr --hard
+
+  oss = config user.email 'NickTomlin@users.noreply.github.com'
 
   # enterprise aliases for 10x dev
-  hadouken = !"git push -f && echo 'つಠ益ಠ༽つ ─=≡ΣO))'"
+  hadouken = !git push -f && echo 'つಠ益ಠ༽つ ─=≡ΣO))'
   whoopsie = !git add -u && git redo
   burninate = !git reset HEAD --hard
 [core]
 	excludesfile = /Users/ntomlin/.gitignore_global
 	editor = nvim
-[http "https://stash.prod.netflix.net:7006"]
-	sslCert = /Users/ntomlin/.metatron/user.crt
-	sslKey = /Users/ntomlin/.metatron/user.key
-	sslVerify = true
-[url "https://stash.prod.netflix.net:7006/scm"]
-	insteadOf = ssh://git@stash.corp.netflix.com:7999
-[url "https://stash.prod.netflix.net:7006"]
-	insteadOf = https://stash.corp.netflix.com
-	insteadOf = https://stash.corp.netflix.com:7006
-	insteadOf = https://stash.corp.netflix.com:7004
-	insteadOf = https://stash.netflix.com
-[http "https://stash-corp-ci-stable.prod.netflix.net:7006"]
-	sslCert = /Users/ntomlin/.metatron/user.crt
-	sslKey = /Users/ntomlin/.metatron/user.key
-	sslVerify = true
+
+# work specific stuff
+[includeIf "gitdir:~/nf/"]
+  path = .gitconfig-nf
