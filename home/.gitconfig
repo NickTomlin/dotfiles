@@ -13,6 +13,7 @@
   cv = commit -v
 
   redo = commit --amend --no-edit
+  cm = commit -m
   addall = add -A .
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
