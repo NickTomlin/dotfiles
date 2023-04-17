@@ -1,0 +1,42 @@
+" Trying to find an action?
+" check out:
+" https://github.com/JetBrains/ideavim#finding-actions
+
+Plug 'easymotion/vim-easymotion'
+
+set surround
+set visualbell
+set noerrorbells
+
+set clipboard=unnamedplus,unnamed
+set ignorecase
+set gdefault
+
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
+nmap <leader>rs :source ~/.ideavimrc<CR>
+
+nmap <leader>h :action SplitHorizontally<CR>
+nmap <leader>v :action SplitVertically<CR>
+
+nmap <leader>e :action ShowErrorDescription<CR>
+nmap <leader>b :action ToggleLineBreakpoint<CR>
+
+nmap <leader>nf :action SelectInProjectView<CR>
+
+nmap <leader>db :action EvaluateExpression<CR>
+nmap <leader>rf :action RunClass<CR>
+nmap <leader>rd :action DebugClass<CR>
+nmap <leader>rl :action RerunFailedTests<CR>
+
+nmap <leader>ff :action GotoFile<CR>
+
+map <leader>rc :action ReformatCode<CR>
+
+" https://stackoverflow.com/a/40648470/1048479
+nmap gi :action GotoImplementation<CR>
+
+" https://superuser.com/a/677312/146376
+set visualbell
+set noerrorbells
