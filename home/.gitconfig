@@ -29,7 +29,7 @@
   up = !git fetch && git rebase --autostash FETCH_HEAD
   releases = tag --sort version:refname
   pu = push -u origin HEAD
-  puf = pu -f
+  puf = pu --force-with-lease
   amen = commit --amend
   rr = reset @{u}
   haircut = rr --hard
