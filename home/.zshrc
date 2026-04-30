@@ -151,7 +151,13 @@ unset key
 source ~/.zsh_aliases
 source ~/.terminal_config/functions.zsh
 
+# OS-specific config
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  [[ -f ~/.config/shell/macos.zsh ]] && source ~/.config/shell/macos.zsh
+else
+  [[ -f ~/.config/shell/linux.zsh ]] && source ~/.config/shell/linux.zsh
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH=/usr/local/opt/curl-openssl/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin

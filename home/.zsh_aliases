@@ -1,3 +1,2 @@
 alias g="git"
-alias idea="/Users/ntomlin/Library/Application\ Support/JetBrains/Toolbox/scripts/idea"
 alias vim=nvim

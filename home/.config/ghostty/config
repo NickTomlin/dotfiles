@@ -1,0 +1,10 @@
+theme = catppuccin-mocha
+background-opacity = 0.95
+app-notifications = no-clipboard-copy
+
+# Vim-style split navigation
+# https://www.reddit.com/r/neovim/comments/1hne1q6/comment/m42tmt4/
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+l=goto_split:right
+keybind = ctrl+alt+j=goto_split:bottom
+keybind = ctrl+alt+k=goto_split:top
