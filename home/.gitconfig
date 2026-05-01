@@ -47,6 +47,9 @@
 [include]
   path = ~/.gitconfig.local
 
+[init]
+  defaultBranch = main
+
 # work specific stuff
 [includeIf "gitdir:~/nf/"]
   path = .gitconfig-nf
