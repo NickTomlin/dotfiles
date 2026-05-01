@@ -33,6 +33,11 @@
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
 
+# Share history across sessions in real time.
+setopt SHARE_HISTORY
+HISTSIZE=50000
+SAVEHIST=50000
+
 #
 # Input/output
 #
@@ -161,3 +166,6 @@ fi
 
 # Machine-local overrides (gitignored, not committed)
 [[ -f ~/.config/shell/local.zsh ]] && source ~/.config/shell/local.zsh
+
+# fzf shell integration (requires fzf >= 0.48)
+command -v fzf &>/dev/null && source <(fzf --zsh)
