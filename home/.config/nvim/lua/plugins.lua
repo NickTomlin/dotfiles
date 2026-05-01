@@ -1,3 +1,5 @@
+local catppuccin_flavour = "macchiato"
+
 return {
   -- Colorscheme
   {
@@ -6,7 +8,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "macchiato",
+      flavour = catppuccin_flavour,
       integrations = {
         treesitter = true,
         nvimtree = true,
@@ -17,17 +19,17 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-macchiato")
+      vim.cmd.colorscheme("catppuccin-" .. catppuccin_flavour)
     end,
   },
 
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
     opts = {
       options = {
-        theme = "catppuccin",
+        theme = "catppuccin-" .. catppuccin_flavour,
         component_separators = "|",
         section_separators = { left = "", right = "" },
         globalstatus = true,
