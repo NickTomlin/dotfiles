@@ -44,17 +44,17 @@ source "$HOME/.cargo/env"
 
 **Shell:**
 - [Zim](https://zimfw.sh/docs/install/) — zsh framework (run `zimfw install` after first login)
-- `bat`, `fzf`, `zoxide`, `fnm` — quality-of-life CLI tools
+- `bat`, `fzf`, `zoxide`, `fnm`, `eza` — quality-of-life CLI tools
 
 **macOS only:**
 ```sh
-brew install bat fzf zoxide fnm neovim
+brew install bat fzf zoxide fnm neovim eza
 ```
 
 **Linux:**
 ```sh
 # via pacman, cargo, or your preferred method
-sudo pacman -S bat fzf neovim
+sudo pacman -S bat fzf neovim eza
 cargo install zoxide
 ```
 
