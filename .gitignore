@@ -1,0 +1,11 @@
+# Machine-local overrides — create these on each machine, never commit them
+home/.config/shell/local.zsh
+home/.gitconfig.local
+home/.zshrc.local
+
+# Tool-generated files
+home/.p10k.zsh
+home/.zsh_history
+home/.zcompdump*
+home/.tool-versions
+.claude

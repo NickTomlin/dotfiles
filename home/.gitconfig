@@ -41,8 +41,14 @@
   whoopsie = !git add -u && git redo
   burninate = !git reset HEAD --hard
 [core]
-	excludesfile = /Users/ntomlin/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = nvim
+
+[include]
+  path = ~/.gitconfig.local
+
+[init]
+  defaultBranch = main
 
 # work specific stuff
 [includeIf "gitdir:~/nf/"]

@@ -1,3 +1,7 @@
 alias g="git"
-alias idea="/Users/ntomlin/Library/Application\ Support/JetBrains/Toolbox/scripts/idea"
 alias vim=nvim
+
+alias ls='eza --icons'
+alias ll='eza -lh --icons --git'
+alias la='eza -lha --icons --git'
+alias lt='eza --tree --icons'

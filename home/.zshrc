@@ -33,6 +33,11 @@
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
 
+# Share history across sessions in real time.
+setopt SHARE_HISTORY
+HISTSIZE=50000
+SAVEHIST=50000
+
 #
 # Input/output
 #
@@ -150,8 +155,17 @@ unset key
 # My stuff
 source ~/.zsh_aliases
 source ~/.terminal_config/functions.zsh
+source ~/.config/shell/prompt.zsh
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH=/usr/local/opt/curl-openssl/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin
+# OS-specific config
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  [[ -f ~/.config/shell/macos.zsh ]] && source ~/.config/shell/macos.zsh
+else
+  [[ -f ~/.config/shell/linux.zsh ]] && source ~/.config/shell/linux.zsh
+fi
+
+# Machine-local overrides (gitignored, not committed)
+[[ -f ~/.config/shell/local.zsh ]] && source ~/.config/shell/local.zsh
+
+# fzf shell integration (requires fzf >= 0.48)
+command -v fzf &>/dev/null && source <(fzf --zsh)
