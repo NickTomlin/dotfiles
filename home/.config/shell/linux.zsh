@@ -16,6 +16,11 @@ elif command -v xsel &>/dev/null; then
   paste() { xsel --clipboard --output; }
 fi
 
+if command -v xclip &>/dev/null || command -v xsel &>/dev/null; then
+  alias pbcopy='copy'
+  alias pbpaste='paste'
+fi
+
 # Copy SSH public key to clipboard
 sshkey() {
   if command -v xclip &>/dev/null; then
