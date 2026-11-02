@@ -78,6 +78,16 @@ home/               # mirrors $HOME — everything here gets symlinked by stow
     nvim/           # neovim config
 ```
 
+## Pi Herdr fork
+
+`home/.pi/agent/extensions/herdr-fork.ts` adds `/herdr-fork` and `/hf` to Pi. To install the extension without Stowing the rest of `home`:
+
+```sh
+ln -s "$HOME/workspace/dotfiles/home/.pi/agent/extensions/herdr-fork.ts" "$HOME/.pi/agent/extensions/herdr-fork.ts"
+```
+
+Restart Pi, then use `/hf [v|vertical|h|horizontal|t|tab] [instructions]`. The default is a focused right-hand pane; `h` opens below and `t` opens a new tab. Instructions are submitted immediately to the new Pi; omitting them leaves it idle. A fork copies the last completed conversation point into a new session and leaves the original Pi session running. Both panes use the same working directory.
+
 ## Auditing
 
 Once Stow is set up, every dotfile is a symlink into the repo. Auditing is just:
