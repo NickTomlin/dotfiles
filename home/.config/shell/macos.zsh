@@ -1,6 +1,5 @@
 # macOS-specific shell configuration
 
-
 # Homebrew
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -15,12 +14,6 @@ fi
 # Clipboard helpers
 copy() { pbcopy; }
 paste() { pbpaste; }
-
-# Copy SSH public key to clipboard
-sshkey() {
-  pbcopy < "${HOME}/.ssh/id_rsa.pub"
-  echo "SSH public key copied to clipboard."
-}
 
 # base64-encode a file and copy to clipboard
 base64copy() {

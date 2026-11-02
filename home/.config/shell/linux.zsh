@@ -21,20 +21,10 @@ if command -v xclip &>/dev/null || command -v xsel &>/dev/null; then
   alias pbpaste='paste'
 fi
 
-# Copy SSH public key to clipboard
-sshkey() {
-  if command -v xclip &>/dev/null; then
-    xclip -selection clipboard < "${HOME}/.ssh/id_rsa.pub"
-  elif command -v xsel &>/dev/null; then
-    xsel --clipboard --input < "${HOME}/.ssh/id_rsa.pub"
-  else
-    echo "No clipboard tool found (install xclip or xsel)"
-    return 1
-  fi
-  echo "SSH public key copied to clipboard."
-}
-
 # Cross-platform tool inits (activate only if installed)
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
-command -v fnm    &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
+if ! command -v fnm &>/dev/null && [[ -x "$HOME/.local/share/fnm/fnm" ]]; then
+  export PATH="$HOME/.local/share/fnm:$PATH"
+fi
+command -v fnm &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
