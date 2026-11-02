@@ -11,6 +11,20 @@ mcd() { [[ -n "$1" ]] && mkdir -p "$1" && cd "$1"; }
 # Check whether a command exists
 exists() { hash "$1" 2>/dev/null; }
 
+# Copy the default SSH public key to the clipboard
+sshkey() {
+  local key
+  for key in "$HOME/.ssh/id_ed25519.pub" "$HOME/.ssh/id_rsa.pub"; do
+    if [[ -r "$key" ]]; then
+      copy < "$key" || return 1
+      echo "SSH public key copied to clipboard."
+      return
+    fi
+  done
+  echo "No SSH public key found" >&2
+  return 1
+}
+
 # Start a local HTTP server
 serve() {
   local port="${1:-3000}"

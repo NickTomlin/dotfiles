@@ -27,24 +27,18 @@ brew install stow
 stow --dir=~/workspace/dotfiles --target=$HOME home
 ```
 
-Stow creates symlinks in `$HOME` pointing back into the repo. Any conflict (file already exists and isn't a symlink) will be reported — resolve by updating the repo file to match your machine, then re-run.
+Stow creates symlinks in `$HOME` pointing back into the repo. If a target is already managed by a different symlink, Stow reports a conflict; check that link before replacing it.
 
 ## 4. Create a machine-local override file
 
-Create `~/.config/shell/local.zsh` for anything machine-specific (not committed):
-
-```zsh
-# Example: tool inits that vary per machine
-eval "$(fnm env --use-on-cd --shell zsh)"
-eval "$(zoxide init zsh)"
-source "$HOME/.cargo/env"
-```
+Create `~/.config/shell/local.zsh` for machine-specific overrides (not committed). Shared tool initialization already lives in the OS-specific shell files; don't repeat it here.
 
 ## 5. Install core tools
 
 **Shell:**
 - [Zim](https://zimfw.sh/docs/install/) — zsh framework (run `zimfw install` after first login)
 - `bat`, `fzf`, `zoxide`, `fnm`, `eza` — quality-of-life CLI tools
+- `tree-sitter-cli` (>= 0.26.1) and a C compiler — Neovim parser installation (`npm install -g tree-sitter-cli`)
 
 **macOS only:**
 ```sh
@@ -75,22 +69,18 @@ home/               # mirrors $HOME — everything here gets symlinked by stow
       local.zsh     # machine-local overrides (gitignored — create per machine)
     ghostty/        # Ghostty terminal config + Catppuccin themes
     bat/            # bat (cat replacement) config + Catppuccin themes
-    nvim/           # neovim config
+    nvim/           # Neovim config
 ```
 
 ## Pi Herdr fork
 
-`home/.pi/agent/extensions/herdr-fork.ts` adds `/herdr-fork` and `/hf` to Pi. To install the extension without Stowing the rest of `home`:
-
-```sh
-ln -s "$HOME/workspace/dotfiles/home/.pi/agent/extensions/herdr-fork.ts" "$HOME/.pi/agent/extensions/herdr-fork.ts"
-```
+Stow installs `home/.pi/agent/extensions/herdr-fork.ts` with the other dotfiles. It adds `/herdr-fork` and `/hf` to Pi.
 
 Restart Pi, then use `/hf [v|vertical|h|horizontal|t|tab] [instructions]`. The default is a focused right-hand pane; `h` opens below and `t` opens a new tab. Instructions are submitted immediately to the new Pi; omitting them leaves it idle. A fork copies the last completed conversation point into a new session and leaves the original Pi session running. Both panes use the same working directory.
 
 ## Auditing
 
-Once Stow is set up, every dotfile is a symlink into the repo. Auditing is just:
+Stow links files or whole directories into `$HOME`. Auditing the repo is just:
 
 ```sh
 git -C ~/workspace/dotfiles status
