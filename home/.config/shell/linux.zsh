@@ -36,5 +36,8 @@ sshkey() {
 
 # Cross-platform tool inits (activate only if installed)
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
-command -v fnm    &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
+if ! command -v fnm &>/dev/null && [[ -x "$HOME/.local/share/fnm/fnm" ]]; then
+  export PATH="$HOME/.local/share/fnm:$PATH"
+fi
+command -v fnm &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
